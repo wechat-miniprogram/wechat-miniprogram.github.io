@@ -3,6 +3,7 @@ const path = require('path')
 module.exports = {
     title: 'wechat-miniprogram / kbone',
     description: 'Web 与小程序同构解决方案',
+    base: '/kbone/docs/',
     dest: path.resolve(__dirname, '../../docs'),
     themeConfig: {
         nav: [
