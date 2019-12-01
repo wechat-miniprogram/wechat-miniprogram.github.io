@@ -233,6 +233,14 @@ app.wxss 输出配置，支持的值：
 }
 ```
 
+### generate.autoBuildNpm
+
+构建完成后是否自动安装小程序依赖，支持的值：
+
+* `false`：**默认值**，不自动安装依赖
+* `true/'npm'`：使用 npm 自动安装依赖
+* `'yarn'`：使用 yarn 自动安装依赖
+
 ## runtime
 
 运行时配置。
