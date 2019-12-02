@@ -34,6 +34,10 @@ module.exports = {
             ],
         },
         sidebarDepth: 2,
+        algolia: {
+            apiKey: '626178cb614d1dc0584d19df84838c2a',
+            indexName: 'kbone',
+        },
     },
     markdown: {
         lineNumbers: true,
