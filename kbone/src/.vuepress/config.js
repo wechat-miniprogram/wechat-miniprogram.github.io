@@ -5,7 +5,11 @@ module.exports = {
     description: 'Web 与小程序同构解决方案',
     base: '/kbone/docs/',
     dest: path.resolve(__dirname, '../../docs'),
+    head:[
+        ['link', {rel: 'shortcut icon', href: '/favicon.ico'}],
+    ],
     themeConfig: {
+        logo: '/logo.svg',
         nav: [
             {text: '指南', link: '/'},
             {text: '配置', link: '/config/'},
