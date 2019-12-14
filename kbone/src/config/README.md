@@ -177,7 +177,7 @@ app.wxss 输出配置，支持的值：
 }
 ```
 
-### generate.app
+### generate.appEntry
 
 自定义生成小程序 app.js，值为 webpack entry 配置项中的 key。如果一个 webpack 配置的入口被声明为 app.js 的入口，那么它就不会被作为页面处理。
 
