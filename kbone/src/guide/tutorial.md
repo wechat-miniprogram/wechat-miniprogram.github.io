@@ -83,7 +83,7 @@ module.exports = {
         rules: [
             // loaders 配置。这里需要注意的是，部分在 wxss 不支持的样式需要剔除，比如 ie hack 代码，可以使用 postcss 的 stylehacks 插件剔除；对于资源文件来说，需要转成 base64 或者线上资源链接，下面是一个简单的示例：
             // {
-            //     test: /\.(png|jpg|gif|svg|eot|woff|woff2|ttf)$/,
+            //     test: /\.(png|jpg|jpeg|gif|svg|eot|woff|woff2|ttf)$/,
             //     use: [{
             //         loader: 'url-loader',
             //         options: {
