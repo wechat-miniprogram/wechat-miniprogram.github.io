@@ -1,4 +1,4 @@
-## 快速上手
+# 快速上手
 
 ## 安装使用
 
@@ -22,7 +22,7 @@ kbone init my-app
 **3. 安装 kbone-ui 项目**
 
 ```
-npm install taro-ui
+npm install kbone-ui
 ```
 
 
@@ -40,3 +40,25 @@ npm run build
 ```
 
 > PS：项目基于 webpack 构建，关于 webpack 方面的配置可以[点此查看](https://webpack.js.org/configuration/)，而关于小程序构建相关的详细配置细节可以[参考此文档](https://wechat-miniprogram.github.io/kbone/docs/guide/tutorial.html)。
+
+
+**4. 使用 kbone-ui 项目**
+
+加载全部组件内容，并引入 weui 样式库：
+
+```js
+import KboneUI from 'kbone-ui'
+import 'kbone-ui/lib/weui/weui.css'
+
+Vue.use(KboneUI)
+```
+
+或者使用按需引入：
+
+```js
+import KButton from 'kbone-ui/lib/KButton.js'
+import KView from 'kbone-ui/lib/KView.js'
+
+Vue.use(KButton)
+Vue.use(KView)
+```

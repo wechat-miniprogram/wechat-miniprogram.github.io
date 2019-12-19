@@ -12,6 +12,7 @@ module.exports = {
             {text: 'dom/bom 扩展 API', link: '/domextend/'},
             {text: 'Q&A', link: '/qa/'},
             {text: '更新日志', link: '/changelog/'},
+            {text: 'kbone-ui', link: '/ui/intro/', target:'_blank'},
             {text: 'GitHub', link: 'https://github.com/wechat-miniprogram/kbone', target:'_blank'},
         ],
         sidebar: {
@@ -22,6 +23,40 @@ module.exports = {
             '/domextend/': [''],
             '/qa/': [''],
             '/changelog/': [''],
+            '/ui/':[
+                '/ui/intro/quickstart',
+                '/ui/intro/',
+                {
+                    title:"视图容器",
+                    children:[
+                        '/ui/components/kview',
+                        '/ui/components/kflex',
+                    ]
+                },
+                {
+                    title:"表单组件",
+                    children:[
+                        '/ui/components/kbutton',
+                        '/ui/components/kbuttonarea',
+                        '/ui/components/kcheckbox',
+                        '/ui/components/kcheckboxgroup',
+                        '/ui/components/kinput',
+                        '/ui/components/kradio',
+                        '/ui/components/kswitch',
+                        '/ui/components/kslider',
+                        '/ui/components/kpickerview',
+                        '/ui/components/kpickercolumn',
+                    ]
+                },
+                {
+                    title:"操作反馈",
+                    children:[
+                        '/ui/components/kactionsheet',
+                        '/ui/components/ktoast',
+                        '/ui/components/ktoptips',
+                    ]
+                }
+            ],
             '/': [
                 '',
                 '/guide/quickstart',
@@ -32,6 +67,7 @@ module.exports = {
                 '/guide/suggest',
                 '/guide/develop',
             ],
+            
         },
         sidebarDepth: 2,
     },
