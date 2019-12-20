@@ -177,7 +177,7 @@ app.wxss 输出配置，支持的值：
 }
 ```
 
-### generate.app
+### generate.appEntry
 
 自定义生成小程序 app.js，值为 webpack entry 配置项中的 key。如果一个 webpack 配置的入口被声明为 app.js 的入口，那么它就不会被作为页面处理。
 
@@ -232,6 +232,14 @@ app.wxss 输出配置，支持的值：
     // 其他配置...
 }
 ```
+
+### generate.autoBuildNpm
+
+构建完成后是否自动安装小程序依赖，支持的值：
+
+* `false`：**默认值**，不自动安装依赖
+* `true/'npm'`：使用 npm 自动安装依赖
+* `'yarn'`：使用 yarn 自动安装依赖
 
 ## runtime
 

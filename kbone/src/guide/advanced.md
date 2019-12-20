@@ -2,6 +2,33 @@
 
 因为 Web 端和小程序端的差异性，此文档提供了一些进阶用法、优化方式和开发建议。
 
+## 环境判断
+
+对于开发者来说，可能需要针对不同端做一些特殊的逻辑，因此也就需要一个方法来判断区分不同的环境。kbone 推荐的做法是通过 webpack 注入一个环境变量：
+
+```js
+// webpack.mp.config.js
+module.exports = {
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.isMiniprogram': true,
+        }),
+        // ... other options
+    ],
+    // ... other options
+}
+```
+
+后续在业务代码中，就可以通过 `process.env.isMiniprogram` 来判断是否在小程序环境：
+
+```js
+if (process.env.isMiniprogram) {
+    console.log('in miniprogram')
+} else {
+    console.log('in web')
+}
+```
+
 ## 多页开发
 
 对于多页面的应用，在 Web 端可以直接通过 a 标签或者 location 对象进行跳转，但是在小程序中则行不通；同时 Web 端的页面 url 实现和小程序页面路由也是完全不一样的，因此对于多页开发最大的难点在于如何进行页面跳转。
