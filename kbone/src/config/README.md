@@ -145,7 +145,7 @@ app.wxss 输出配置，支持的值：
 
 小程序 tabBar，详细注意事项可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#tabBar)。其值和官方配置基本一致，但是存在些微不同：
 
-* 使用 `pageName` 代替官方的 `pagePage` 字段，其值为[页面名称](#页面名称)
+* 使用 `pageName` 代替官方的 `pagePath` 字段，其值为[页面名称](#页面名称)
 * `iconPath` 和 `selectedIconPath` 因为不支持网络图片，需要指定对应图片的绝对路径
 
 如果需要使用**自定义 tabBar**，则需要配置 `custom` 字段，其值为需要拷贝到小程序 custom-tab-bar 目录的目录地址。
