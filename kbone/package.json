@@ -10,6 +10,6 @@
     "vuepress": "^1.2.0"
   },
   "dependencies": {
-    "kbone-ui": "^0.5.4"
+    "kbone-ui": "^0.5.6"
   }
 }
