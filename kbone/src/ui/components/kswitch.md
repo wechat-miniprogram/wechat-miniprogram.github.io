@@ -14,6 +14,8 @@ import {KSwitch} from 'kbone-ui'
 <KSwitch v-model="switchItem" label="Switch文本" />
 ```
 
+<KFormDemo></KFormDemo>
+
 ## 使用参数
 
 | 属性 | 类型 | 默认值 | 必填 | 说明 | 

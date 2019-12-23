@@ -19,3 +19,5 @@ import { KPickerViewColumn } from 'kbone-ui'
             </KPickerViewColumn>
 </KPickerView>
 ```
+
+<KPickerDemo/>

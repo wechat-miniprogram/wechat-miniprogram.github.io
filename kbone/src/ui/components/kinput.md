@@ -15,6 +15,8 @@ import {KInput} from 'kbone-ui'
 <KInput label="昵称" @change="inputChangv-model="inputNickName" placeholder="填写信号的昵称" clearable/>
 ```
 
+<KFormDemo></KFormDemo>
+
 ## 使用参数
 
 | H5 | 小程序 | 属性 | 类型 | 默认值 | 必填 | 说明 |

@@ -18,6 +18,7 @@ import { KActionSheet } from 'kbone-ui'
             :actionClick='actionChoose'
         />
 ```
+<KActionSheetDemo/>
 
 
 ## 使用参数

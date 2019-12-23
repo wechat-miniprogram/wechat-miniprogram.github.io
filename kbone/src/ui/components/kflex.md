@@ -19,3 +19,4 @@ import {KFlex, KFlexItem } from 'kbone-ui'
 </KFlex>
 ```
 
+<KFlexDemo/>

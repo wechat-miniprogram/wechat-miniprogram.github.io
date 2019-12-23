@@ -21,6 +21,9 @@ import { KPickerView } from 'kbone-ui'
 </KPickerView>
 ```
 
+<KPickerDemo/>
+
+
 ## 使用参数
 
 | H5 | 小程序 |属性|类型|默认值|必填|说明| 

@@ -22,7 +22,7 @@ import {KButtonArea} from 'kbone-ui'
     <KButton type="warn" :disabled="true">警告类操作</KButton>
 </KButtonArea>
 ```
-
+<KButtonDemo />
 
 ## 使用参数
 

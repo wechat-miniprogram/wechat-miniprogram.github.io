@@ -5,6 +5,11 @@
     "build": "vuepress build src"
   },
   "devDependencies": {
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
     "vuepress": "^1.2.0"
+  },
+  "dependencies": {
+    "kbone-ui": "^0.5.4"
   }
 }

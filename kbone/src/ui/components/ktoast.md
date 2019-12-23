@@ -17,6 +17,8 @@ import { KToast } from 'kbone-ui'
 >加载中提示</KToast>
 ```
 
+<KToastDemo></KToastDemo>
+
 
 ## 使用参数
 

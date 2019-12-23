@@ -16,6 +16,7 @@ import {KCheckboxGroup} from 'kbone-ui'
     <KCheckbox value="小程序开发">小程序开发</KCheckbox> 
 </KCheckboxGroup>
 ```
+<KFormDemo></KFormDemo>
 
 ## 使用参数
 

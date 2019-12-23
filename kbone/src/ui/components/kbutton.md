@@ -24,6 +24,7 @@ import {KButton} from 'kbone-ui'
 </KButtonArea>
 ```
 
+<KButtonDemo />
 
 ## 使用参数
 

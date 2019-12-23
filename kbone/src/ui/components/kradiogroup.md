@@ -18,6 +18,8 @@ import {KRadioGroup} from 'kbone-ui'
 </KRadioGroup>
 ```
 
+<KFormDemo></KFormDemo>
+
 ## 使用参数
 
 | 属性 | 类型 | 默认值 | 必填 | 说明 |

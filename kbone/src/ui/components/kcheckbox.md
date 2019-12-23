@@ -17,6 +17,8 @@ import {KCheckbox} from 'kbone-ui'
 </KCheckboxGroup>
 ```
 
+<KFormDemo></KFormDemo>
+
 ## 使用参数
 
 | 属性 | 类型 | 默认值 | 必填 | 说明 | 
