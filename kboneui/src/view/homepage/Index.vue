@@ -51,11 +51,11 @@ export default Vue.extend({
                     items:[
                         {
                             text:"Button",
-                            link:"/button"
+                            link:routes.pages.button
                         },
                         {
                             text:"Form",
-                            link:"/form"
+                            link:routes.pages.form
                         }
                     ]
                 },
@@ -66,15 +66,15 @@ export default Vue.extend({
                     items:[
                         {
                             text:"Flex",
-                            link:"/flex"
+                            link:routes.pages.flex
                         },
                         {
                             text:"Progress",
-                            link:"/progress"
+                            link:routes.pages.progress
                         },
                         {
                             text:"Slider",
-                            link:"/slider"
+                            link:routes.pages.slider
                         },
 
                     ]
@@ -86,11 +86,11 @@ export default Vue.extend({
                     items:[
                         {
                             text:"Picker",
-                            link:"/picker"
+                            link:routes.pages.picker
                         },
                         {
                             text:"Swiper",
-                            link:"/swiper"
+                            link:routes.pages.swiper
                         }
                     ]
                 },
@@ -101,15 +101,15 @@ export default Vue.extend({
                     items:[
                         {
                             text:"Actionsheet",
-                            link:"/actionsheet"
+                            link:routes.pages.actionsheet
                         },
                         {
                             text:"Toast",
-                            link:"/toast"
+                            link:routes.pages.toast
                         },
                         {
                             text:"Toptips",
-                            link:"/toptips"
+                            link:routes.pages.toptips
                         }
                     ]
                 }

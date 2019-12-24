@@ -23,7 +23,7 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: "/(home|index)?",
+      path: routeConfig.index,
       name: "Index",
       component: Home
     },
