@@ -13,8 +13,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
   output: {
     path: path.resolve(__dirname, '../ui'),
-    filename: path.posix.join('static', 'js/[name].[chunkhash].js'),
-    chunkFilename: path.posix.join('static', 'js/[id].[chunkhash].js')
+    filename: path.posix.join('kboneui/ui/static', 'js/[name].[chunkhash].js'),
+    chunkFilename: path.posix.join('kboneui/ui/static', 'js/[id].[chunkhash].js')
   },
   optimization: {
     splitChunks: { // 代码分割配置
