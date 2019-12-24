@@ -92,7 +92,8 @@ webpack 构建中 entry 配置项里的 key，如下 webpack 配置中 `page1`�
 app 输出配置，支持的值：
 
 * `default`：**默认值**，会输出 app.js、app.json、app.wxss 和 project.config.json 等文件
-* `noemit`：不输出 app 相关文件
+* `noemit`：不输出 app 相关文件和 project.config.json
+* `noconfig`：不输出 project.config.json
 
 ### generate.appWxss
 
