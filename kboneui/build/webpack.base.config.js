@@ -1,6 +1,8 @@
 const path = require('path')
 const eslintFriendlyFormatter = require('eslint-friendly-formatter')
 
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -9,7 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist/web'),
     filename: '[name].js',
-    publicPath: '/',
+    publicPath: isProd? '/kboneui/ui/':"/",
   },
   module: {
     rules: [
