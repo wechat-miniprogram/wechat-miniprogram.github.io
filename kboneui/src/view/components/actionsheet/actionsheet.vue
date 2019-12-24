@@ -1,8 +1,8 @@
 <template>
     <KView class="page actionsheet js_show">
         <KView class="page__hd">
-            <h1 class="page__title">Button</h1>
-            <p class="page__desc">按钮，WeUI采用小程序原生的按钮为主体，加入一些间距的样式。</p>
+            <h1 class="page__title">ActionSheet</h1>
+            <p class="page__desc">ActionSheet 样式</p>
         </KView>
         <KView class="page__hd">
             <KButton @click="openSheet">Show ActionSheet</KButton>
