@@ -1,16 +1,16 @@
 export default {
-    index:"/kboneui/ui/",
+    index:"/",
     pages:{
-        flex:"/kboneui/ui/flex",
-        form:"/kboneui/ui/form",
-        slider:"/kboneui/ui/slider",
-        button:"/kboneui/ui/button",
-        actionsheet:"/kboneui/ui/actionsheet",
-        dialog:"/kboneui/ui/dialog",
-        toast:"/kboneui/ui/toast",
-        progress:"/kboneui/ui/progress",
-        toptips:"/kboneui/ui/toptips",
-        picker:"/kboneui/ui/picker",
-        swiper:"/kboneui/ui/swiper"
+        flex:"/flex",
+        form:"/form",
+        slider:"/slider",
+        button:"/button",
+        actionsheet:"/actionsheet",
+        dialog:"/dialog",
+        toast:"/toast",
+        progress:"/progress",
+        toptips:"/toptips",
+        picker:"/picker",
+        swiper:"/swiper"
     }
 }

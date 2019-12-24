@@ -20,7 +20,8 @@ const Swiper = () => import(/* webpackChunkName: "Swiper" */ "@/view/components/
 Vue.use(Router)
 
 export default new Router({
-  mode: "history",
+  mode: "hash",
+  base:"/kboneui/ui/",
   routes: [
     {
       path: routeConfig.index,
