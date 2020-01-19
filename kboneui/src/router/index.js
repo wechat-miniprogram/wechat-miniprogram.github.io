@@ -27,7 +27,7 @@ export default new Router({
     base:"/kboneui/ui/",
     routes: [
         {
-            path: '/(home|index)?',
+            path: routeConfig.pages.index,
             name: 'Index',
             component: Home
         },
