@@ -23,7 +23,8 @@ const Movable = () => import(/* webpackChunkName: "Movable" */ '@/view/component
 Vue.use(Router)
 
 export default new Router({
-    mode: 'history',
+    mode: "hash",
+    base:"/kboneui/ui/",
     routes: [
         {
             path: '/(home|index)?',
