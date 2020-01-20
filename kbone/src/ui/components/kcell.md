@@ -24,6 +24,7 @@ import {KCell} from 'kbone-ui'
         </KCell>
     </KCells>
 ```
+<KCellsDemo></KCellsDemo>
 
 ## 使用参数
 

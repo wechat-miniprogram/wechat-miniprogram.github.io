@@ -25,6 +25,8 @@ import {KCells} from 'kbone-ui'
     </KCells>
 ```
 
+<KCellsDemo></KCellsDemo>
+
 ## 使用参数
 
 | 属性 | 类型 | 默认值 | 必填 | 说明 |
