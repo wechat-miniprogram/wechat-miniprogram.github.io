@@ -41,6 +41,7 @@ module.exports = {
                         '/ui/components/kswiper',
                         '/ui/components/kswiperitem',
                         '/ui/components/kscrollview',
+                        '/ui/components/kmovable'
                     ]
                 },
                 {
