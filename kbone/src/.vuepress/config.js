@@ -40,6 +40,7 @@ module.exports = {
                         '/ui/components/kflex',
                         '/ui/components/kswiper',
                         '/ui/components/kswiperitem',
+                        '/ui/components/kscrollview',
                     ]
                 },
                 {
