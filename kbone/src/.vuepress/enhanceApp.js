@@ -1,5 +1,6 @@
 import KboneUI from 'kbone-ui'
 import 'kbone-ui/lib/weui/weui.css'
+import './components/base.less'
 
 export default ({
     Vue, // the version of Vue being used in the VuePress app

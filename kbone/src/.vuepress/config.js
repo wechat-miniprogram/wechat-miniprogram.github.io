@@ -38,6 +38,8 @@ module.exports = {
                     children:[
                         '/ui/components/kview',
                         '/ui/components/kflex',
+                        '/ui/components/kswiper',
+                        '/ui/components/kswiperitem',
                     ]
                 },
                 {
@@ -60,6 +62,7 @@ module.exports = {
                     children:[
                         '/ui/components/kactionsheet',
                         '/ui/components/ktoast',
+                        '/ui/components/kdialog',
                         '/ui/components/ktoptips',
                     ]
                 }

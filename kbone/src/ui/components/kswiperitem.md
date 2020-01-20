@@ -26,6 +26,7 @@ import {KSwiperItem} from 'kbone-ui'
 </KSwiper>
 ```
 
+<KSwiperDemo/>
 
 ## 使用参数
 
