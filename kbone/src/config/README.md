@@ -271,9 +271,11 @@ app.wxss 输出配置，支持的值：
 
 cookie 存储方式，支持的值：
 
-* `default`：**默认值**，存储在小程序的 storage 中
-* `storage`：同 `default`
-* `memory`：存储在内存中
+* `default`：**默认值**，存储在小程序的 storage 中，所有页面共享
+* `storage`：存储在小程序的 storage 中，页面间不共享
+* `memory`：存储在内存中，页面间不共享
+* `globalstorage`：同 `default`
+* `globalmemory`：存储在内存中，所有页面共享
 
 ## app
 
