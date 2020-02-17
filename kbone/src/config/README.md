@@ -151,6 +151,8 @@ app.wxss 输出配置，支持的值：
 
 如果需要使用**自定义 tabBar**，则需要配置 `custom` 字段，其值为需要拷贝到小程序 custom-tab-bar 目录的目录地址。
 
+> PS：tabBar 页面默认进入的 `location.pathname` 为 `/`，如果该页面使用了单页路由配置（如 vue-router 等）且默认路由不是 `/` 的情况则需要处理 `/` 这个路由，如将其重定向到默认路由等方式。
+
 ```js
 // mp-webpack-plugin 配置
 {
