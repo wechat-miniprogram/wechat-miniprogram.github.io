@@ -244,6 +244,19 @@ app.wxss 输出配置，支持的值：
 * `true/'npm'`：使用 npm 自动安装依赖
 * `'yarn'`：使用 yarn 自动安装依赖
 
+### generate.projectConfig
+
+调整 project.config.json 文件的生成目录路径，需传入绝对路径。
+
+```js
+{
+    generate: {
+        projectConfig: path.join(__dirname, '../dist/mp'), // 注意，这是目录路径，不是文件路径
+    },
+    // 其他配置...
+}
+```
+
 ## runtime
 
 运行时配置。
