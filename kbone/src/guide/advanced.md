@@ -147,6 +147,8 @@ module.exports = {
 </wx-swiper>
 ```
 
+> PS：默认 canvas 内置组件的 touch 事件为通用事件的 Touch 对象，而不是 CanvasTouch 对象，如果需要用到 CanvasTouch 对象的话可以改成监听 `canvastouchstart`、`canvastouchmove`、`canvastouchend` 和 `canvastouchcancel` 事件。
+
 > PS：原生组件的表现在小程序中表现会和 web 端标签有些不一样，具体可参考[原生组件说明文档](https://developers.weixin.qq.com/miniprogram/dev/component/native-component.html)。
 
 > PS：原生组件下的子节点，div、span 等标签会被渲染成 cover-view，img 会被渲染成 cover-image，如若需要使用 button 内置组件请使用 `wx-component` 或 `wx-` 前缀。

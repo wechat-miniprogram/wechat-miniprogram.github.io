@@ -381,4 +381,18 @@ document.querySelector('video').$$getNodesRef().then(nodesRef => {
 
 > PS：注意此处孙子节点更新是不会触发的。
 
+## canvas
+
+### canvas.$$prepare
+
+小程序 canvas 提供了和 Web 端接口对齐的 node 对象，此方法用于将该对象处理到 canvas 节点的 getContext 方法中。
+
+```
+document.getElementById('#canvas').$$prepare().then(domNode => {
+    const ctx = domNode.getContext('2d') // 注意，这种用法需要设置 canvas 节点的 type 属性，相关文档：https://developers.weixin.qq.com/miniprogram/dev/component/canvas.html
+    
+    // do something
+})
+```
+
 
