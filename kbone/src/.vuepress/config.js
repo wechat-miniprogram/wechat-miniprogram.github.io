@@ -54,6 +54,8 @@ module.exports = {
                         '/ui/components/kinput',
                         '/ui/components/kradio',
                         '/ui/components/kswitch',
+                        "/ui/components/kcell",
+                        "/ui/components/kcells",
                         '/ui/components/kslider',
                         '/ui/components/kpickerview',
                         '/ui/components/kpickercolumn',
