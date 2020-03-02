@@ -147,7 +147,9 @@ module.exports = {
 </wx-swiper>
 ```
 
-> PS：原生组件的表现在小程序中表现会和 web 端标签有些不一样，具体可[参考原生组件说明文档](https://developers.weixin.qq.com/miniprogram/dev/component/native-component.html)。
+> PS：默认 canvas 内置组件的 touch 事件为通用事件的 Touch 对象，而不是 CanvasTouch 对象，如果需要用到 CanvasTouch 对象的话可以改成监听 `canvastouchstart`、`canvastouchmove`、`canvastouchend` 和 `canvastouchcancel` 事件。
+
+> PS：原生组件的表现在小程序中表现会和 web 端标签有些不一样，具体可参考[原生组件说明文档](https://developers.weixin.qq.com/miniprogram/dev/component/native-component.html)。
 
 > PS：原生组件下的子节点，div、span 等标签会被渲染成 cover-view，img 会被渲染成 cover-image，如若需要使用 button 内置组件请使用 `wx-component` 或 `wx-` 前缀。
 
@@ -400,3 +402,76 @@ window.location.testFunc('abc', 123) // 会执行 beforeAspect，再调用 testF
 ```
 
 > PS：具体 API 可参考 [dom/bom 扩展 API](../domextend/) 文档。
+
+## 云开发
+
+云开发是小程序官方提供的一种云端能力使用方案，在 kbone 中使用云开发能力可按以下步骤进行即可。
+
+假设下述例子的目录结构如下：
+
+```
+├─ build
+│  ├─ miniprogram.config.js // mp-webpack-plugin 配置
+│  └─ webpack.mp.config.js // 小程序端构建配置
+│ 
+├─ src // 源码目录
+├─ cloudfunctions // 云函数源码目录
+│ 
+└─ dist
+   └─ mp // 生成小程序项目
+      ├─ miniprogram // 小程序根目录
+      ├─ cloudfunctions // 云函数根目录
+      └─ project.config.json
+```
+
+其中 dist/mp 目录是我们需要生成的目录，对比普通的 kbone 项目主要调整点有三个：
+
+1. 创建云函数目录
+
+即上述目录结构中的 `/cloudfunctions`，这个目录在构建中要被完整拷贝到 `/dist/mp/cloudfunctions` 下.
+
+2. 修改 webpack 配置
+
+调整小程序代码输出路径，即 **output.path** 配置，下述例子是将原本的 `/dist/mp/common` 调整为 `/dist/mp/miniprogram/common`。
+
+同时引入了 `copy-webpack-plugin` 插件，将云函数目录拷贝到小程序项目下。
+
+```js
+// webpack.mp.config.js
+const CopyPlugin = require('copy-webpack-plugin')
+
+module.exports = {
+    output: {
+        path: path.resolve(__dirname, '../dist/mp/miniprogram/common'), // 放到小程序代码目录中的 common 目录下
+        // ... other options
+    },
+    plugins: [
+        // other plugins
+        new CopyPlugin([{from: path.join(__dirname, '../cloudfunctions'), to: path.join(__dirname, '../dist/mp/cloudfunctions')}]),
+    ],
+    // ... other options
+}
+```
+
+3. 修改 webpack 插件配置
+
+调整 project.config.json 的生成目录路径，让其生成到小程序代码输出目录的上一级，即 `/dist/mp` 目录。
+
+同时还需要补充 `miniprogramRoot` 和 `cloudfunctionRoot` 两项配置到 project.config.json 中。
+
+```js
+module.exports = {
+    generate: {
+		projectConfig: path.join(__dirname, '../dist/mp'),
+    },
+    projectConfig: {
+		miniprogramRoot: 'miniprogram/', // 小程序根目录
+		cloudfunctionRoot: 'cloudfunctions/', // 云函数根目录
+	},
+    // ... other options
+}
+```
+
+后续按照正常方式进行构建即可。构建完成后的操作和原生的云开发模式一样，具体可参考[官方提供的云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)。
+
+> PS：具体例子可参考 [demo19](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo19)

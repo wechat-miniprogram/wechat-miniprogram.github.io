@@ -151,6 +151,8 @@ app.wxss 输出配置，支持的值：
 
 如果需要使用**自定义 tabBar**，则需要配置 `custom` 字段，其值为需要拷贝到小程序 custom-tab-bar 目录的目录地址。
 
+> PS：tabBar 页面默认进入的 `location.pathname` 为 `/`，如果该页面使用了单页路由配置（如 vue-router 等）且默认路由不是 `/` 的情况则需要处理 `/` 这个路由，如将其重定向到默认路由等方式。
+
 ```js
 // mp-webpack-plugin 配置
 {
@@ -242,6 +244,19 @@ app.wxss 输出配置，支持的值：
 * `true/'npm'`：使用 npm 自动安装依赖
 * `'yarn'`：使用 yarn 自动安装依赖
 
+### generate.projectConfig
+
+调整 project.config.json 文件的生成目录路径，需传入绝对路径。
+
+```js
+{
+    generate: {
+        projectConfig: path.join(__dirname, '../dist/mp'), // 注意，这是目录路径，不是文件路径
+    },
+    // 其他配置...
+}
+```
+
 ## runtime
 
 运行时配置。
@@ -271,9 +286,11 @@ app.wxss 输出配置，支持的值：
 
 cookie 存储方式，支持的值：
 
-* `default`：**默认值**，存储在小程序的 storage 中
-* `storage`：同 `default`
-* `memory`：存储在内存中
+* `default`：**默认值**，存储在小程序的 storage 中，所有页面共享
+* `storage`：存储在小程序的 storage 中，页面间不共享
+* `memory`：存储在内存中，页面间不共享
+* `globalstorage`：同 `default`
+* `globalmemory`：存储在内存中，所有页面共享
 
 ## app
 

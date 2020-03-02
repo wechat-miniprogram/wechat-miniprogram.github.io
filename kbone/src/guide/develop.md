@@ -134,7 +134,3 @@ npm run codecov
 合入流程：
 
 其他分支 ---> develop 分支 ---> master 分支
-
-### CI
-
-目前未接入，待补充。
