@@ -139,7 +139,7 @@ module.exports = {
 
 > PS：绝大部分内置组件在渲染时会在外面多包装一层自定义组件，可以近似认为内置组件和其父级节点中间会**多一层 div 容器**，所以会对部分样式有影响。这个 div 容器会追加一个名为 h5-xxx 的 class，例如使用 video 组件，那么会在这个 div 容器上追加一个名为 h5-video 的 class，以便对其做特殊处理。另外如果是用 wx-component 或是 wx- 前缀渲染的内置组件，会在容器追加的 class 是 h5-wx-component，为了更方便进行识别，这种情况会再在容器额外追加 wx-xxx 的 class。
 
-对于这种情况，样式可以参考下述方式来调整编写：
+> 对于这种情况，样式可以参考下述方式来调整编写：
 
 ```html
 <textarea class="textare-node" />
