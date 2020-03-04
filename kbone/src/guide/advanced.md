@@ -350,7 +350,7 @@ module.exports = {
 ```js
 module.exports = {
     generate: {
-        app: 'miniprogram-app',
+        appEntry: 'miniprogram-app',
     },
     // ... other options
 }
