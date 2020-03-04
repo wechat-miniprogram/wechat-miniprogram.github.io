@@ -141,6 +141,11 @@ textarea .wx-comp-textare {}
 **Q**：vue 会将值为 false 的属性剔除，对于默认值为 true 的属性想要设置成 false 要怎么办？<br/>
 **A**：可以将该属性设置成其他 falsy 的值，比如空串。例子：`<textarea adjust-position="" />`。
 
+<br/>
+
+**Q**：页面做更新的时候，有时候很快，有时候很慢，这是怎么回事？<br/>
+**A**：更新慢的时候，通常这是一棵比较矮胖的 dom 树，所有节点都在一个自定义组件里面了，导致小程序基础课做更新 diff 时，特别慢。这种情况可以将频繁更新的部分包裹在一个 wx-view 标签内，这样会强制创建新的自定义组件。此方法有利有弊，自定义组件过多也会导致渲染变慢，所以需要根据实际情况进行调整，不能一味的使用 wx-view。
+
 ## 反馈
 
 如果还遇到其他问题，可在 [issue](https://github.com/wechat-miniprogram/kbone/issues) 中反馈。
