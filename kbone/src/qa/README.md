@@ -90,46 +90,14 @@
 <br/>
 
 **Q**：为什么使用小程序内置组件的时候，和父级节点或者子级节点相互影响的样式表现（比如 flex）会不太符合预期？<br/>
-**A**：绝大部分小程序内置组件在渲染时会在外面多包装一层自定义组件，可以简单认为内置组件和其父级节点中间会**多一层 div 容器**，所以会对部分样式有影响。这个 div 容器会追加一个名为 h5-xxx 的 class，例如使用 video 组件，那么会在这个 div 容器上追加一个名为 h5-video 的 class，以便对其做特殊处理。另外如果是用 wx-component 或是 wx- 前缀渲染的内置组件，会在容器追加的 class 是 h5-wx-component，为了更方便进行识别，这种情况会再在容器额外追加 wx-xxx 的 class。
+**A**：绝大部分小程序内置组件在渲染时会在外面多包装一层自定义组件，可以近似认为内置组件和其父级节点中间会**多一层 div 容器**，所以会对部分样式有影响。
 
-对于这种情况，样式可以按照如下的方式来写：
-
-```html
-<textarea class="textare-node" />
-```
-
-```css
-/* 方式一：textarea 会被转成 .h5-textarea 并挂在容器上，.wx-comp-textarea 会被补充到真正的 textarea 节点上 */
-textarea .wx-comp-textare {}
-
-/* 方式二：同方式一，只是直接将 textarea 标签选择器写成 .h5-textarea */
-.h5-textarea .wx-comp-textare {}
-
-/* 方式三：直接使用 class，会挂在真正的 textarea 节点上 */
-.textarea-node {}
-```
-
-对于必须使用 wx- 前缀的组件，则可以按照如下的方式：
-
-```html
-<wx-switch class="switch-node"></wx-switch>
-```
-
-```css
-/* 方式一：容器上会默认挂上 .h5-wx-component ，.wx-comp-switch 会被补充到真正的 wx-switch 节点上 */
-.h5-wx-component .wx-comp-switch {}
-
-/* 方式二：同方式一，只是除了 .h5-wx-component 外，容器还会默认挂上 .wx-switch */
-.wx-switch .wx-comp-switch {}
-
-/* 方式三：直接使用 class，会挂在真正的 wx-switch 节点上 */
-.switch-node {}
-```
+对于这种情况，样式可以参考[这篇文档](https://wechat-miniprogram.github.io/kbone/docs/guide/advanced.html#%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)里提到的的方式来写。
 
 <br/>
 
 **Q**: 为什么使用小程序内置组件的时候样式有时候会不生效？
-**A**: 和上一个问题的原因相同，内置组件和其父级节点中间会**多一层 div 容器**所致。
+**A**: 和上一个问题的原因相同，内置组件和其父级节点中间会**多一层容器**所致。
 
 <br/>
 
