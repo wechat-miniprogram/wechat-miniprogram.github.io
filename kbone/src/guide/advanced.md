@@ -174,8 +174,8 @@ module.exports = {
     </map>
     <element class="h5-wx-component wx-scroll-view">
         <scroll-view class="wx-comp-scroll-view">
-            <div></div>
-            <div></div>
+            <view></view>
+            <view></view>
         </scroll-view>
     </element>
 </view>
@@ -196,8 +196,8 @@ module.exports = {
     </element>
     <element class="h5-wx-component wx-scroll-view">
         <scroll-view class="wx-comp-scroll-view">
-            <div></div>
-            <div></div>
+            <view></view>
+            <view></view>
         </scroll-view>
     </element>
 </view>
