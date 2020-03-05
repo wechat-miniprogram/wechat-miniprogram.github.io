@@ -174,13 +174,13 @@ module.exports = {
 ```
 
 ```css
-/* 方式一：canvas 会被转成 .h5-canvas 并挂在容器上，.wx-comp-canvas 会被补充到真正的 canvas 节点上 */
+/* 方式一（不推荐）：canvas 会被转成 .h5-canvas 并挂在容器上，.wx-comp-canvas 会被补充到真正的 canvas 节点上 */
 canvas .wx-comp-canvas {}
 
-/* 方式二：同方式一，只是直接将 canvas 标签选择器写成 .h5-canvas */
+/* 方式二（不推荐）：同方式一，只是直接将 canvas 标签选择器写成 .h5-canvas */
 .h5-canvas .wx-comp-canvas {}
 
-/* 方式三：直接使用 class，会挂在真正的 canvas 节点上 */
+/* 方式三（推荐）：直接使用 class，会挂在真正的 canvas 节点上 */
 .canvas-node {}
 ```
 
@@ -191,17 +191,17 @@ canvas .wx-comp-canvas {}
 ```
 
 ```css
-/* 方式一：容器上会默认挂上 .h5-wx-component ，.wx-comp-map 会被补充到真正的 wx-map 节点上 */
+/* 方式一（不推荐）：容器上会默认挂上 .h5-wx-component ，.wx-comp-map 会被补充到真正的 wx-map 节点上 */
 .h5-wx-component .wx-comp-map {}
 
-/* 方式二：同方式一，只是除了 .h5-wx-component 外，容器还会默认挂上 .wx-map */
+/* 方式二（不推荐）：同方式一，只是除了 .h5-wx-component 外，容器还会默认挂上 .wx-map */
 .wx-map .wx-comp-map {}
 
-/* 方式三：直接使用 class，会挂在真正的 wx-map 节点上 */
+/* 方式三（推荐）：直接使用 class，会挂在真正的 wx-map 节点上 */
 .map-node {}
 ```
 
-**beta 版本**：在 miniprogram-render@beta 和 miniprogram-element@beta 版本中，去掉了大部分内置组件外面那一层容器（除了 view、cover-view、text 和 scroll-view 组件外，因为这些组件暂时需要保留子组件的结构），转而将内置组件的子组件包含在一个容器中，容器会追加 h5-virtual 到 class 上，大致结构变化如下：
+**beta 版本**：在 miniprogram-render@beta 和 miniprogram-element@beta 版本中，去掉了大部分内置组件外面那一层容器（除了 view、cover-view、text 和 scroll-view 组件外，因为这些组件暂时需要保留子组件的结构，所以沿用外层容器包裹的方式），转而将内置组件的子组件包含在一个容器中，容器会追加 h5-virtual 到 class 上，大致结构变化如下：
 
 ```html
 <!-- 源码 -->

@@ -95,7 +95,7 @@
 <br/>
 
 **Q**: 为什么使用小程序内置组件的时候样式有时候会不生效？
-**A**: 和上一个问题的原因相同，内置组件和其父级节点中间会**多一层容器**所致。对于这种情况，可以参考[这篇文档](https://wechat-miniprogram.github.io/kbone/docs/guide/advanced.html#%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)里提到的的方式来处理。
+**A**: 和上一个问题的原因相同，对于这种情况，可以参考[这篇文档](https://wechat-miniprogram.github.io/kbone/docs/guide/advanced.html#%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)里提到的的方式来处理。
 
 <br/>
 
