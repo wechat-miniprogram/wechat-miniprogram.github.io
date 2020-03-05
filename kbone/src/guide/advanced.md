@@ -234,13 +234,13 @@ canvas .wx-comp-canvas {}
 
 <!-- beta 版本生成的结构 -->
 <view>
-    <canvas class="h5-canvas wx-comp-canvas">
+    <canvas class="h5-canvas wx-canvas wx-comp-canvas">
         <element class="h5-virtual">
             <cover-view></cover-view>
             <cover-view></cover-view>
         </element>
     </canvas>
-    <map class="h5-wx-component wx-comp-map">
+    <map class="h5-wx-component wx-map wx-comp-map">
         <element class="h5-virtual">
             <cover-view></cover-view>
             <cover-view></cover-view>
