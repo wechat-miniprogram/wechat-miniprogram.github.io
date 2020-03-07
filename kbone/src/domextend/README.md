@@ -199,6 +199,12 @@ window.$$removeAspect('element.hasChildNodes.after', afterAspect)
 |---|---|---|
 | data | Object | 小程序被分享页面 onShareAppMessage 回调传入的参数，可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShareAppMessage-Object-object) |
 
+除了官方支持的参数外，还支持额外的参数：
+
+| 属性名 | 类型 | 描述 |
+|---|---|---|
+| data.miniprogramPath | String | 默认传入的 path 会被改造成 kbone 能解析的路径，如果需要分享原始的小程序页面路由，可传入此参数 |
+
 ```js
 window.onShareAppMessage = function(data) {
     // 当页面被分享时会进入这个回调
@@ -206,6 +212,7 @@ window.onShareAppMessage = function(data) {
     return {
         title: 'test title',
         path: '/home/index', // 这里的 path 是页面 url，而不是小程序路由
+        // miniprogramPath: '/pages/home/index', // 如果需要分享原始小程序页面路由，可传递此参数
     }
 }
 ```
