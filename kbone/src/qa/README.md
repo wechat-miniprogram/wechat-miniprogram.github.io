@@ -112,6 +112,11 @@
 **Q**：页面做更新的时候，有时候很快，有时候很慢，这是怎么回事？<br/>
 **A**：更新慢的时候，通常这是一棵比较矮胖的 dom 树，所有节点都在一个自定义组件里面了，导致小程序基础课做更新 diff 时，特别慢。这种情况可以将频繁更新的部分包裹在一个 wx-view 标签内，这样会强制创建新的自定义组件。此方法有利有弊，自定义组件过多也会导致渲染变慢，所以需要根据实际情况进行调整，不能一味的使用 wx-view。
 
+<br/>
+
+**Q**：已知 location.href，如果封装成对应的小程序的页面路由？
+**A**：先找到对应的页面路径，假设是 `pages/home/index`，那么封装方式：`/pages/home/index?type=${type}&targeturl=${encodeURIComponent(location.href)}&search=${encodeURIComponent(location.search)}&hash=${encodeURIComponent(location.hash)}`。type 支持 open（新开页面）、jump（页面内跳转）和 share（分享进入），一般在配置体验版、添加工具模式等情况下使用 type=open 即可；targeturl 是经过编码的 location.href；search 和 hash 可传可不传，如若不传，则取 targeturl 中的 search 和 hash 进行解析。
+
 ## 反馈
 
 如果还遇到其他问题，可在 [issue](https://github.com/wechat-miniprogram/kbone/issues) 中反馈。
