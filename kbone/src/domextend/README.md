@@ -222,8 +222,6 @@ window.onShareAppMessage = function(data) {
 
 > PS：返回的对象中，path 是要分享页面的 url（支持跨页面分享），而不是页面路由。如果不返回默认取 window.locaiton.href。
 
-<br/>
-
 > PS：miniprogramPath 的组装方式可参考 [QA 说明](../qa/#%E7%AD%94%E7%96%91)。
 
 ### window.onDealWithNotSupportDom
