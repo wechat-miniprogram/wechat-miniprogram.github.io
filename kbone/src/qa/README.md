@@ -90,12 +90,12 @@
 <br/>
 
 **Q**：为什么使用小程序内置组件的时候，和父级节点或者子级节点相互影响的样式表现（比如 flex）会不太符合预期？<br/>
-**A**：绝大部分小程序内置组件在渲染时会**插入一层容器节点**，所以会对部分样式有影响。对于这种情况，可以参考[这篇文档](https://wechat-miniprogram.github.io/kbone/docs/guide/advanced.html#%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)里提到的的方式来处理。
+**A**：绝大部分小程序内置组件在渲染时会**插入一层容器节点**，所以会对部分样式有影响。对于这种情况，可以参考[这篇文档](../guide/advanced/#%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)里提到的的方式来处理。
 
 <br/>
 
 **Q**: 为什么使用小程序内置组件的时候样式有时候会不生效？
-**A**: 和上一个问题的原因相同，对于这种情况，可以参考[这篇文档](https://wechat-miniprogram.github.io/kbone/docs/guide/advanced.html#%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)里提到的的方式来处理。
+**A**: 和上一个问题的原因相同，对于这种情况，可以参考[这篇文档](../guide/advanced/#%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)里提到的的方式来处理。
 
 <br/>
 

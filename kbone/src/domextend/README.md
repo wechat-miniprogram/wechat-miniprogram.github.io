@@ -211,13 +211,17 @@ window.onShareAppMessage = function(data) {
     // 返回一个对象，作为小程序处理分享的参数，对象内容和小程序页面 onShareAppMessage 回调可返回对象内容基本一致，具体可参考官方文档：https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShareAppMessage-Object-object
     return {
         title: 'test title',
-        path: '/home/index', // 这里的 path 是页面 url，而不是小程序路由
-        // miniprogramPath: '/pages/home/index', // 如果需要分享原始小程序页面路由，可传递此参数
+        path: '/a', // 当前页面，这里的 path 是页面 url，而不是小程序路由
+        // path: 'https://test.miniprogram.com/a', // 当前页面的完整 url，同上
+        // path: '/b', // 其他页面，同上
+        // path: 'https://test.miniprogram.com/b', // 其他页面的完整 url，同上
+        // miniprogramPath: `/pages/page2/index?type=share&targeturl=${encodeURIComponent('https://test.miniprogram.com/b')}`, // 如果需要分享原始小程序页面路由，可传递此参数
     }
 }
 ```
 
-> PS：返回的对象中，path 是要分享页面的 url，而不是页面路由。如果不返回默认取 window.locaiton.href。
+> PS：返回的对象中，path 是要分享页面的 url（支持跨页面分享），而不是页面路由。如果不返回默认取 window.locaiton.href。
+> PS：miniprogramPath 的组装方式可参考 [QA 说明](../qa/)。
 
 ### window.onDealWithNotSupportDom
 
