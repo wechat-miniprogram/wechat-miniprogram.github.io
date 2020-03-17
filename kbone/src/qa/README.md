@@ -50,7 +50,7 @@
 <br/>
 
 **Q**：对于异步请求要如何兼容？<br/>
-**A**：可以使用第三方请求库来实现，比如 axios 和 axios-miniprogram-adapter 就是一个不错的选择。当然，你也可以自己编写 adapter。
+**A**：内置的 XMLHttpRequest 对象可以满足大部分场景；对于上传文件等场景需要自行兼容，比如可以选用 wx.uploadFile 来实现文件上传。
 
 <br/>
 
