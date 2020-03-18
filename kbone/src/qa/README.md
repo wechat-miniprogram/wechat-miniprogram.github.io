@@ -89,17 +89,17 @@
 
 <br/>
 
-**Q**：为什么使用小程序内置组件的时候，和父级节点或者子级节点相互影响的样式表现（比如 flex）会不太符合预期？<br/>
+**Q**：为什么使用小程序内置组件的时候，对于父子节点会相互影响的样式表现（比如 flex）会不太符合预期？<br/>
 **A**：绝大部分小程序内置组件在渲染时会**插入一层容器节点**，所以会对部分样式有影响。对于这种情况，可以参考[这篇文档](../guide/advanced.html#%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)里提到的的方式来处理。
 
 <br/>
 
-**Q**: 为什么使用小程序内置组件的时候样式有时候会不生效？
+**Q**: 为什么使用小程序内置组件的时候样式有时候会不生效？<br/>
 **A**: 和上一个问题的原因相同，对于这种情况，可以参考[这篇文档](../guide/advanced.html#%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)里提到的的方式来处理。
 
 <br/>
 
-**Q**：为什么 scroll-view 的 scroll-into-view 有时可用有时不可用？<br/>
+**Q**：为什么 scroll-view 的 scroll-into-view 属性有时可用有时不可用？<br/>
 **A**：因为 scroll-into-view 找寻的节点只能在当前 shadow-tree 下，因此只有传入 `domSubTreeLevel` 配置对应层级内的 div、img 标签对应的 id 方能生效。如果 `domSubTreeLevel` 的值为 5，那么只有 scroll-view 下 5 层节点内的 div、img 标签上的 id 可以作为该 scroll-view 上 scroll-into-view 的值。
 
 <br/>
