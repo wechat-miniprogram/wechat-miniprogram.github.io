@@ -264,7 +264,7 @@ usingComponents 里的声明和小程序页面的 usingComponents 字段类似�
 <!-- comp-b.wxml -->
 <view>comp-b</view>
 <view>propa: {{propa}} -- propb: {{propb}}</view>
-<button bintap="onTap">click me</button>
+<button bindtap="onTap">click me</button>
 <slot></slot>
 ```
 
