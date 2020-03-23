@@ -50,7 +50,7 @@
 <br/>
 
 **Q**：对于异步请求要如何兼容？<br/>
-**A**：可以使用第三方请求库来实现，比如 axios 和 axios-miniprogram-adapter 就是一个不错的选择。当然，你也可以自己编写 adapter。
+**A**：内置的 XMLHttpRequest 对象可以满足大部分场景；对于上传文件等场景需要自行兼容，比如可以选用 wx.uploadFile 来实现文件上传。
 
 <br/>
 
@@ -89,57 +89,33 @@
 
 <br/>
 
-**Q**：为什么使用小程序内置组件的时候，和父级节点或者子级节点相互影响的样式表现（比如 flex）会不太符合预期？<br/>
-**A**：绝大部分小程序内置组件在渲染时会在外面多包装一层自定义组件，可以简单认为内置组件和其父级节点中间会**多一层 div 容器**，所以会对部分样式有影响。这个 div 容器会追加一个名为 h5-xxx 的 class，例如使用 video 组件，那么会在这个 div 容器上追加一个名为 h5-video 的 class，以便对其做特殊处理。另外如果是用 wx-component 或是 wx- 前缀渲染的内置组件，会在容器追加的 class 是 h5-wx-component，为了更方便进行识别，这种情况会再在容器额外追加 wx-xxx 的 class。
-
-对于这种情况，样式可以按照如下的方式来写：
-
-```html
-<textarea class="textare-node" />
-```
-
-```css
-/* 方式一：textarea 会被转成 .h5-textarea 并挂在容器上，.wx-comp-textarea 会被补充到真正的 textarea 节点上 */
-textarea .wx-comp-textare {}
-
-/* 方式二：同方式一，只是直接将 textarea 标签选择器写成 .h5-textarea */
-.h5-textarea .wx-comp-textare {}
-
-/* 方式三：直接使用 class，会挂在真正的 textarea 节点上 */
-.textarea-node {}
-```
-
-对于必须使用 wx- 前缀的组件，则可以按照如下的方式：
-
-```html
-<wx-switch class="switch-node"></wx-switch>
-```
-
-```css
-/* 方式一：容器上会默认挂上 .h5-wx-component ，.wx-comp-switch 会被补充到真正的 wx-switch 节点上 */
-.h5-wx-component .wx-comp-switch {}
-
-/* 方式二：同方式一，只是除了 .h5-wx-component 外，容器还会默认挂上 .wx-switch */
-.wx-switch .wx-comp-switch {}
-
-/* 方式三：直接使用 class，会挂在真正的 wx-switch 节点上 */
-.switch-node {}
-```
+**Q**：为什么使用小程序内置组件的时候，对于父子节点会相互影响的样式表现（比如 flex）会不太符合预期？<br/>
+**A**：绝大部分小程序内置组件在渲染时会**插入一层容器节点**，所以会对部分样式有影响。对于这种情况，可以参考[这篇文档](../guide/advanced.html#%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)里提到的的方式来处理。
 
 <br/>
 
-**Q**: 为什么使用小程序内置组件的时候样式有时候会不生效？
-**A**: 和上一个问题的原因相同，内置组件和其父级节点中间会**多一层 div 容器**所致。
+**Q**: 为什么使用小程序内置组件的时候样式有时候会不生效？<br/>
+**A**: 和上一个问题的原因相同，对于这种情况，可以参考[这篇文档](../guide/advanced.html#%E4%BD%BF%E7%94%A8%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)里提到的的方式来处理。
 
 <br/>
 
-**Q**：为什么 scroll-view 的 scroll-into-view 有时可用有时不可用？<br/>
+**Q**：为什么 scroll-view 的 scroll-into-view 属性有时可用有时不可用？<br/>
 **A**：因为 scroll-into-view 找寻的节点只能在当前 shadow-tree 下，因此只有传入 `domSubTreeLevel` 配置对应层级内的 div、img 标签对应的 id 方能生效。如果 `domSubTreeLevel` 的值为 5，那么只有 scroll-view 下 5 层节点内的 div、img 标签上的 id 可以作为该 scroll-view 上 scroll-into-view 的值。
 
 <br/>
 
 **Q**：vue 会将值为 false 的属性剔除，对于默认值为 true 的属性想要设置成 false 要怎么办？<br/>
 **A**：可以将该属性设置成其他 falsy 的值，比如空串。例子：`<textarea adjust-position="" />`。
+
+<br/>
+
+**Q**：页面做更新的时候，有时候很快，有时候很慢，这是怎么回事？<br/>
+**A**：更新慢的时候，通常这是一棵比较矮胖的 dom 树，所有节点都在一个自定义组件里面了，导致小程序基础课做更新 diff 时，特别慢。这种情况可以将频繁更新的部分包裹在一个 wx-view 标签内，这样会强制创建新的自定义组件。此方法有利有弊，自定义组件过多也会导致渲染变慢，所以需要根据实际情况进行调整，不能一味的使用 wx-view。
+
+<br/>
+
+**Q**：已知 location.href，如果封装成对应的小程序的页面路由？<br/>
+**A**：先找到对应的页面路径，假设是 `pages/home/index`，那么封装方式：<span style="word-break: break-all;">`/pages/home/index?type=${type}&targeturl=${encodeURIComponent(location.href)}&search=${encodeURIComponent(location.search)}&hash=${encodeURIComponent(location.hash)}`</span>。type 支持 open（新开页面）、jump（页面内跳转）和 share（分享进入），一般在配置体验版、添加工具模式等情况下使用 type=open 即可；targeturl 是经过编码的 location.href；search 和 hash 可传可不传，如若不传，则取 targeturl 中的 search 和 hash 进行解析。
 
 ## 反馈
 

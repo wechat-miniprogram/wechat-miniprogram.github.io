@@ -135,6 +135,74 @@ module.exports = {
 * open-data 组件
 * web-view 组件
 
+内置组件的子组件会被包裹在一层自定义组件里面，因此内置组件和子组件之间会隔着一层容器，该容器会追加 h5-virtual 到 class 上（除了 view、cover-view、text、scroll-view 和 picker-view 组件外，因为这些组件需要保留子组件的结构，所以沿用 0.x 版本的渲染方式）。
+
+> **0.x 版本**：在 0.x 版本中，绝大部分内置组件在渲染时会在外面多包装一层自定义组件，可以近似认为内置组件和其父级节点中间会**多一层 div 容器**，所以会对部分样式有影响。这个 div 容器会追加一个名为 h5-xxx 的 class，例如使用 video 组件，那么会在这个 div 容器上追加一个名为 h5-video 的 class，以便对其做特殊处理。另外如果是用 wx-component 或是 wx- 前缀渲染的内置组件，会在容器追加的 class 是 h5-wx-component，为了更方便进行识别，这种情况会再在容器额外追加 wx-xxx 的 class。
+
+生成的结构大致如下：
+
+```html
+<!-- 源码 -->
+<div>
+    <canvas>
+        <div></div>
+        <div></div>
+    </canvas>
+    <wx-map>
+        <div></div>
+        <div></div>
+    </wx-map>
+    <wx-scroll-view>
+        <div></div>
+        <div></div>
+    </wx-scroll-view>
+</div>
+
+<!-- 1.x 版本生成的结构 -->
+<view>
+    <canvas class="h5-canvas wx-canvas wx-comp-canvas">
+        <element class="h5-virtual">
+            <cover-view></cover-view>
+            <cover-view></cover-view>
+        </element>
+    </canvas>
+    <map class="h5-wx-component wx-map wx-comp-map">
+        <element class="h5-virtual">
+            <cover-view></cover-view>
+            <cover-view></cover-view>
+        </element>
+    </map>
+    <element class="h5-wx-component wx-scroll-view">
+        <scroll-view class="wx-comp-scroll-view">
+            <view></view>
+            <view></view>
+        </scroll-view>
+    </element>
+</view>
+
+<!-- 0.x 版本本生成的结构 -->
+<view>
+    <element class="h5-canvas">
+        <canvas class="wx-comp-canvas">
+            <cover-view></cover-view>
+            <cover-view></cover-view>
+        </canvas>
+    </element>
+    <element class="h5-wx-component wx-map">
+        <map class="wx-comp-map">
+            <cover-view></cover-view>
+            <cover-view></cover-view>
+        </map>
+    </element>
+    <element class="h5-wx-component wx-scroll-view">
+        <scroll-view class="wx-comp-scroll-view">
+            <view></view>
+            <view></view>
+        </scroll-view>
+    </element>
+</view>
+```
+
 > PS：button 标签不会被渲染成 button 内置组件，同理 form 标签也不会被渲染成 form 内置组件，如若需要请按照上述原生组件使用说明使用。
 
 > PS：因为自定义组件的限制，movable-area/movable-view、swiper/swiper-item、picker-view/picker-view-column 这三组组件必须作为父子存在才能使用，比如 swiper 组件和 swiper-item 必须作为父子组件才能使用，如：
@@ -196,7 +264,7 @@ usingComponents 里的声明和小程序页面的 usingComponents 字段类似�
 <!-- comp-b.wxml -->
 <view>comp-b</view>
 <view>propa: {{propa}} -- propb: {{propb}}</view>
-<button bintap="onTap">click me</button>
+<button bindtap="onTap">click me</button>
 <slot></slot>
 ```
 
@@ -314,7 +382,7 @@ module.exports = {
 ```js
 module.exports = {
     generate: {
-        app: 'miniprogram-app',
+        appEntry: 'miniprogram-app',
     },
     // ... other options
 }
@@ -402,6 +470,32 @@ window.location.testFunc('abc', 123) // 会执行 beforeAspect，再调用 testF
 ```
 
 > PS：具体 API 可参考 [dom/bom 扩展 API](../domextend/) 文档。
+
+## 事件系统
+
+kbone 里节点事件没有直接复用小程序的捕获冒泡事件体系，原因在于：
+
+* 小程序事件和 Web 事件不完全对齐，比如 input 事件在小程序里是不冒泡的。
+* 小程序自定义组件是基于 Web Components 的概念设计的，对于跨自定义组件的情况，无法准确获取事件的源节点。
+
+故在 kbone 里的节点事件是在源节点里监听到后，就直接在 kbone 仿造出的 dom 树中进行捕获冒泡。此处使用的事件绑定方式均采用 bindxxx 的方式，故在小程序中最初监听到的事件一定是在源节点监听到的。比如用户触摸屏幕后，会触发 touchstart 事件，在节点 a 上监听到 touchstart 事件后，后续监听到同一行为触发的 touchstart 均会被抛弃，后续的捕获冒泡阶段会在仿造 dom 树中进行。
+
+目前除了内置组件特有的事件外（比如图片的 load 事件），普通节点只有 **touchstart**、**touchmove**、**touchend**、**touchcancel** 和 **tap** 会被监听，其中 tap 会被转化为 **cick** 事件来触发。
+
+因为此处事件监听方式默认是 bindxxx，但是对于一些特殊场景可能需要使用小程序的 capture-bind:xxx（比如无法在源节点监听到事件的场景）、catchxxx（比如需要阻止触摸引起滚动的场景） 和动画事件的情况，对于此可以使用特殊节点 `wx-capture`、`wx-catch` 和 `wx-animation`：
+
+```html
+<!-- 使用小程序原生方式监听 capture 事件 -->
+<wx-capture @touchstart="onCaptureTouchStart" @click="onCaptureClick"></wx-capture>
+<!-- 使用小程序原生方式监听 catch 事件 -->
+<wx-catch @click="onCaptureClick"></wx-catch>
+<!-- 监听动画事件 -->
+<wx-animation @animationstart="onAnimationStart" @transitionend="onTransitionEnd"></wx-animation>
+```
+
+其中 `wx-capture` 和 `wx-catch` 节点上面绑定的 **touchstart**、**touchmove**、**touchend**、**touchcancel** 和 **tap** 五个事件会被使用 capture-bind:xxx 和 catchxxx 的方式监听，脱离了 kbone 的事件捕获冒泡体系，所以只会在此节点单独触发。
+
+> PS：这三种特殊节点的内部实现和内置组件一致，故书写方式和样式处理均可参考内置组件的使用方案。
 
 ## 云开发
 
