@@ -14,6 +14,7 @@ Vue.use(Router)
 
 export default new Router({
     mode: "hash",
+    base: "/kapi/ui/",
     routes: [
         {
             path: routes.index,
