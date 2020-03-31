@@ -35,7 +35,7 @@ import { KScrollView } from 'kbone-ui'
 | o | o | scroll-x | boolean | false | 否 | 允许横向滚动 |
 | o | o | scroll-y | boolean | false | 否 | 允许纵向滚动 |
 | o | o | upper-threshold | number/string | 50 | 否 | 距顶部/左边多远时，触发 scrolltoupper 事件。默认单位为 px ，在 H5 中仅能使用 px 单位，在小程序中还可以使用 rpx |
-| o | o | lower-threshold | number/string | 50 | 否 | 距顶部/左边多远时，触发 scrolltoupper 事件。默认单位为 px ，在 H5 中仅能使用 px 单位，在小程序中还可以使用 rpx |
+| o | o | lower-threshold | number/string | 50 | 否 | 距底部/右边多远时，触发 scrolltolower 事件。默认单位为 px ，在 H5 中仅能使用 px 单位，在小程序中还可以使用 rpx |
 | o | o | scroll-top | number/string | 50 | 否 | 设置竖向滚动条位置。默认单位为 px ，在 H5 中仅能使用 px 单位，在小程序中还可以使用 rpx |
 | o | o | scroll-left | number/string | 50 | 否 | 设置横向滚动条位置。默认单位为 px ，在 H5 中仅能使用 px 单位，在小程序中还可以使用 rpx |
 | o | o | scroll-into-view | number/string | 50 | 否 | 值应为某子元素 id （ id 不能以数字开头）。设置哪个方向可滚动，则在哪个方向滚动到该元素 |
