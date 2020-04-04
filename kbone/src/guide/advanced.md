@@ -497,6 +497,44 @@ kbone 里节点事件没有直接复用小程序的捕获冒泡事件体系，�
 
 > PS：这三种特殊节点的内部实现和内置组件一致，故书写方式和样式处理均可参考内置组件的使用方案。
 
+## 跨页面通信和跨页面数据共享
+
+在 kbone 中，每个页面拥有独立的 window 对象，页面与页面间是相互隔离的，为此需要一个跨页面通信和跨页面数据共享的方式。
+
+1. 在页面中订阅广播消息
+
+```js
+// 页面1
+window.$$subscribe('hello', data => {
+    console.log('receive a msg: ', data)
+})
+```
+
+2. 在其他页面中发布广播消息
+
+```js
+// 页面2
+window.$$publish('hello', 'I am june')
+```
+
+在订阅了此消息的页面则会输出 `receive a msg: I am june`。
+
+> PS：如果需要取消订阅消息，可以使用 window.$$unsubscribe 接口进行取消。
+> PS：页面关闭后，会取消该页面所有的订阅。
+
+如果需要跨页面数据进行共享，可以使用 window.$$global 对象，所有页面的 window.$$global 均会指向同一个对象：
+
+```js
+// 页面1
+window.$$global.name = 'june'
+
+// 页面2
+console.log(window.$$global.name) // 输出 june
+```
+
+> PS：具体 API 可参考 [dom/bom 扩展 API](../domextend/) 文档。
+> PS：具体例子可参考 [demo22](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo22)
+
 ## 云开发
 
 云开发是小程序官方提供的一种云端能力使用方案，在 kbone 中使用云开发能力可按以下步骤进行即可。

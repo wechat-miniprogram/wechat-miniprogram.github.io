@@ -26,6 +26,10 @@
 
 根据传入的 url pathname 来获取匹配的小程序页面路由。
 
+### window.$$global
+
+跨页面共享对象，所有页面的 window.$$global 均会指向同一个对象。
+
 ### window.$$trigger
 
 触发当前节点事件。与 dispatchEvent 不同的是，$$trigger 不会触发事件的捕获、冒泡阶段，只对绑定在节点上的事件句柄按顺序执行一遍。
@@ -189,6 +193,53 @@ div.count // 输出 2
 ```js
 window.$$removeAspect('element.hasChildNodes.before', beforeAspect)
 window.$$removeAspect('element.hasChildNodes.after', afterAspect)
+```
+
+### window.$$subscribe
+
+订阅来自 window 对象发布的广播消息。
+
+| 参数 | 类型 | 描述 |
+|---|---|---|
+| name | String | 消息名称 |
+| handler | Function | 事件句柄 |
+
+```js
+window.$$subscribe('hello', data => {
+    console.log('receive a msg: ', data)
+})
+```
+
+### window.$$unsubscribe
+
+取消订阅来自 window 对象发布的广播消息。
+
+| 参数 | 类型 | 描述 |
+|---|---|---|
+| name | String | 消息名称 |
+| handler | Function | 事件句柄，如果不传则会清除关于此消息的所有事件句柄 |
+
+```js
+const handler = data => {
+    console.log('receive a msg: ', data)
+}
+
+window.$$unsubscribe('hello', handler) // 取消当前订阅
+window.$$unsubscribe('hello') // 取消关于此消息的所有订阅
+```
+
+### window.$$publish
+
+发布广播消息，所有订阅过此消息的 window 对象均会收到。
+
+| 参数 | 类型 | 描述 |
+|---|---|---|
+| name | String | 消息名称 |
+| data | Any | 数据 |
+
+```js
+window.$$publish('hello', 'I am june')
+window.$$publish('hello', {name: 'june'})
 ```
 
 ### window.onShareAppMessage
