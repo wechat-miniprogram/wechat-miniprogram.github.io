@@ -452,3 +452,19 @@ element 对象复用，默认 `true`。当页面被关闭时会回收对象，�
     // 其他配置...
 }
 ```
+
+## sitemapConfig
+
+sitemap 配置，会被写入到项目根目录的 sitemap.json 中。
+
+```js
+// mp-webpack-plugin 配置
+{
+    sitemapConfig: {
+		rules: [{
+			action: 'allow',
+			page: '*',
+		}],
+	},
+}
+```

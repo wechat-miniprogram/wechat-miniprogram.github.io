@@ -59,11 +59,6 @@
 
 <br/>
 
-**Q**：是否支持 sitemap？<br/>
-**A**：暂未支持，不过已经计划之中。
-
-<br/>
-
 **Q**：为什么 img 标签有 mode 属性和没有 mode 属性表现会不太一样？<br/>
 **A**：因为 img 标签有 mode 属性在底层会被渲染成 background-image 模式（即小程序 image 组件默认的形态），没有 mode 属性会被渲染成和 web 端相同的 img 模式。
 
