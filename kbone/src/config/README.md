@@ -465,6 +465,7 @@ sitemap 配置，会被写入到项目根目录的 sitemap.json 中。
 			action: 'allow',
 			page: '*',
 		}],
-	},
+    },
+    // 其他配置...
 }
 ```
