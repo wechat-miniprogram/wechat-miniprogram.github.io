@@ -302,7 +302,7 @@ app 补充配置，除 pages、window、tabBar、subpackages、preloadRule 配�
 
 ## global
 
-所有页面的全局配置。
+所有页面的全局配置，如果需要对单个页面配置，则可在 [pages](#pages) 配置项中配置。
 
 ### global.loadingText
 
@@ -380,6 +380,48 @@ document.documentElement.style.backgroundColor = '#fffbe7'
     // 其他配置...
 }
 ```
+
+> PS：如上述例子中，home、list 均为[页面名称](#页面名称)。
+
+### pages[[页面名称](#页面名称)].loadingText
+
+同 [global.loadingText](#global-loadingtext)。
+
+### pages[[页面名称](#页面名称)].share
+
+同 [global.share](#global-share)。
+
+### pages[[页面名称](#页面名称)].windowScroll
+
+同 [global.windowScroll](#global-windowscroll)。
+
+### pages[[页面名称](#页面名称)].pageBackgroundColor
+
+同 [global.pageBackgroundColor](#global-pagebackgroundcolor)。
+
+### pages[[页面名称](#页面名称)].reachBottom
+
+同 [global.reachBottom](#global-reachbottom)。
+
+### pages[[页面名称](#页面名称)].reachBottomDistance
+
+同 [global.reachBottomDistance](#global-reachbottomdistance)。
+
+### pages[[页面名称](#页面名称)].pullDownRefresh
+
+同 [global.pullDownRefresh](#global-pulldownrefresh)。
+
+### pages[[页面名称](#页面名称)].rem
+
+同 [global.rem](#global-rem)。
+
+### pages[[页面名称](#页面名称)].pageStyle
+
+同 [global.pageStyle](#global-pagestyle)。
+
+### pages[[页面名称](#页面名称)].extra
+
+同 [global.extra](#global-extra)。
 
 ## optimization
 
