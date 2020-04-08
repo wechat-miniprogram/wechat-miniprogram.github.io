@@ -223,7 +223,7 @@ module.exports = {
 
 > PS：如果将插件配置 runtime.wxComponent 的值配置为 `noprefix`，则可以用不带前缀的方式使用内置组件。
 
-> PS：对于某些 Web 框架（如 react）会强行将节点属性类型转成字符串类型，比如 wx-picker 组件的 value/range 属性。对于普通类型数组（如数值类型数组），字符串化会变成`,`连接，kbone 会自动做解析；对于对象数组，如遇到被自动转成字符串的情况，可以尝试将此对象数组转成 json 串传入。
+> PS：某些 Web 框架（如 react）会强行将节点属性值转成字符串类型。对于普通类型数组（如 wx-picker 组件的 value 属性），字符串化会变成`,`连接，kbone 会自动做解析，开发者无需处理；对于对象数组（如 wx-picker 组件的 range 属性），如遇到被自动转成字符串的情况，开发者需要将此对象数组转成 json 串传入。
 
 > PS：具体例子可参考 [demo3](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo3)
 
