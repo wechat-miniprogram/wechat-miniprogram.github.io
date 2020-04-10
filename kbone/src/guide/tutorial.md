@@ -199,8 +199,6 @@ npm install
 
 3. 使用小程序开发者工具直接打开此目录，并点击工具菜单下的构建 npm 按钮，之后便可预览构建好的小程序了。
 
-> PS：建议使用工具的 RC 版本或者 Nightly 版本，以支持 babelSetting 的 ignore 配置。
-
 ## 例子
 
 我们准备了若干 demo，可以[点此查看](https://github.com/wechat-miniprogram/kbone/tree/master/examples)。
