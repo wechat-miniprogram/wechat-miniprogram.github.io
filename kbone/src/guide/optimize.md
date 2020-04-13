@@ -80,3 +80,25 @@ npm install --save-dev vue-improve-loader
 ```
 
 > PS：vue-improve-loader 必须在 vue-loader 之前执行，这样 vue-loader 才会接收到被删减后的代码。
+
+## 小程序扩展库
+
+小程序支持了[扩展库功能](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib)，使用小程序扩展库可以不占用小程序包体积。扩展库目前已内置了 kbone 的 miniprogram-render 和 miniprogram-element 核心依赖库，在 mp-webpack-plugin 配置中补充如下配置即可使用：
+
+```js
+module.exports = {
+    generate: {
+        autoBuildNpm: false,
+    },
+    appExtraConfig: {
+        useExtendedLib: {
+            kbone: true,
+        },
+    },
+    // ... other options
+}
+```
+
+> PS：如果使用扩展库，需要将 [generate.autoBuildNpm](../config/#generate-autobuildnpm) 置为 false，这两个配置暂不支持同时使用。
+
+> PS：因为近期 kbone 迭代较快，扩展库的版本会稍微落后于 npm 上最新版本，使用时敬请注意。
