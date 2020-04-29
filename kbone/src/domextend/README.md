@@ -87,6 +87,12 @@ window.$$getComputedStyle(document.querySelector('div'), ['backgroundColor']).th
 
 相当于 wx.createIntersectionObserver，用法可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/api/wxml/wx.createIntersectionObserver.html)。
 
+### window.$$getOpenerEventChannel
+
+相当于页面的 this.getOpenerEventChannel，用法可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#%E9%A1%B5%E9%9D%A2%E9%97%B4%E9%80%9A%E4%BF%A1)。
+
+> PS：一般来说，页面间通信可直接通过 [window.$$subscribe](#window-subscribe) 和 [window.$$publish](#window-publish) 来处理。只有对非插件页面和插件页面通信或者非 kbone 页面和 kbone 页面通信等特殊情况需要通过 eventChannel 的方式进行处理。
+
 ### window.$$forceRender
 
 强制清空 setData 队列进行渲染。
