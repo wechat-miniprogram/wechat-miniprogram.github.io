@@ -112,6 +112,11 @@
 **Q**：已知 location.href，如果封装成对应的小程序的页面路由？<br/>
 **A**：先找到对应的页面路径，假设是 `pages/home/index`，那么封装方式：<span style="word-break: break-all;">`/pages/home/index?type=${type}&targeturl=${encodeURIComponent(location.href)}&search=${encodeURIComponent(location.search)}&hash=${encodeURIComponent(location.hash)}`</span>。type 支持 open（新开页面）、jump（页面内跳转）和 share（分享进入），一般在配置体验版、添加工具模式等情况下使用 type=open 即可；targeturl 是经过编码的 location.href；search 和 hash 可传可不传，如若不传，则取 targeturl 中的 search 和 hash 进行解析。
 
+<br/>
+
+**Q**：为什么我新增页面后重新构建，代码包会变大那么多？<br/>
+**A**：新增页面后，依赖会重新调整输出，但是 kbone 的 demo 中输出是增量的，所以并没有清理旧的输出文件，因此代码包里会残留废弃文件。开发者可在执行构建命令前对输出目录进行一次清理（比如使用 rimraf），即可保证输出目录是纯净的。
+
 ## 反馈
 
 如果还遇到其他问题，可在 [issue](https://github.com/wechat-miniprogram/kbone/issues) 中反馈。
