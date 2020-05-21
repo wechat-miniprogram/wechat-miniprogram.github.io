@@ -117,6 +117,11 @@
 **Q**：为什么我新增页面后重新构建，代码包会变大那么多？<br/>
 **A**：新增页面后，依赖会重新调整输出，但是 kbone 的 demo 中输出是增量的，所以并没有清理旧的输出文件，因此代码包里会残留废弃文件。开发者可在执行构建命令前对输出目录进行一次清理（比如使用 rimraf），即可保证输出目录是纯净的。
 
+<br/>
+
+**Q**：react/preact 多页开发的时候，在页面 unload 时没有执行 componentWillUnmount 钩子？<br/>
+**A**：react/preact 并没有提供根组件实例的销毁方法（如 vue.$destroy），因此开发者可自行监听 wxunload 或 beforeunload 事件来进行页面的销毁工作，比如调用 render 方法渲染一个空节点，强行触发页面组件的 componentWillUnmount 钩子。
+
 ## 反馈
 
 如果还遇到其他问题，可在 [issue](https://github.com/wechat-miniprogram/kbone/issues) 中反馈。
