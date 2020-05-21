@@ -119,7 +119,7 @@
 
 <br/>
 
-**Q**：react/preact 多页开发的时候，在页面 unload 时没有执行 componentWillUnmount 钩子？<br/>
+**Q**：react/preact 进行多页开发的时候，在页面关闭时没有执行 componentWillUnmount 钩子要怎么处理？<br/>
 **A**：react/preact 并没有提供根组件实例的销毁方法（如 vue.$destroy），因此开发者可自行监听 wxunload 或 beforeunload 事件来进行页面的销毁工作，比如调用 render 方法渲染一个空节点，强行触发页面组件的 componentWillUnmount 钩子。
 
 ## 反馈
