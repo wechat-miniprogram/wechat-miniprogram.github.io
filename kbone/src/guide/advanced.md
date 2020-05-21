@@ -225,6 +225,8 @@ module.exports = {
 
 > PS：某些 Web 框架（如 react）会强行将节点属性值转成字符串类型。对于普通类型数组（如 wx-picker 组件的 value 属性），字符串化会变成`,`连接，kbone 会自动做解析，开发者无需处理；对于对象数组（如 wx-picker 组件的 range 属性），如遇到被自动转成字符串的情况，开发者需要将此对象数组转成 json 串传入。
 
+> PS：某些框架对于布尔值的属性会进行丢弃（比如 react），不会执行 setAttribute 操作，对于这种情况可以使用有值的字符串和空串来代替 true 和 false，也可以通过手动调用 setAttribute 来设置属性。
+
 > PS：具体例子可参考 [demo3](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo3)
 
 ## 使用小程序自定义组件
