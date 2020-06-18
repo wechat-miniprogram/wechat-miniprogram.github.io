@@ -200,6 +200,7 @@ npm install
 3. 使用小程序开发者工具直接打开此目录，并点击工具菜单下的构建 npm 按钮，之后便可预览构建好的小程序了。
 
 > PS：工具必须打开配置 `使用 npm 模块` 和 `ES6 转 ES5`（或者 `增强编译`），确保 npm 包中的 kbone 核心模块能正常运行。
+
 > PS：在没有使用扩展库的模式下，如果遇到 `miniprogram-render` 或 `miniprogram-element` 找不到的报错，请先确保是否正常执行了 npm 构建生成了 miniprogram_npm 目录，如果都已正常生成，可尝试重启下工具。
 
 ## 例子
