@@ -133,7 +133,7 @@ module.exports = {
 
 内置组件的子组件会被包裹在一层自定义组件里面，因此内置组件和子组件之间会隔着一层容器，该容器会追加 h5-virtual 到 class 上（除了 view、cover-view、text、scroll-view 和 picker-view 组件外，因为这些组件需要保留子组件的结构，所以沿用 0.x 版本的渲染方式）。
 
-> **2.x 版本**：基于基础库 2.11.2 的 virtual host 特性实现，除了 view、scroll-view 组件外会保留 0.x 版本的渲染方式，其他组件渲染模式和普通 div 标签无异，不会像 0.x 版本和 1.x 版本那样追加额外的包裹组件。
+> **2.x 版本**：基于基础库 2.11.2 的 virtual host 特性实现，除了 view、cover-view、text、scroll-view 和 picker-view 组件外会保留 0.x 版本的渲染方式，其他组件渲染模式和普通 div 标签无异，不会像 0.x 版本和 1.x 版本那样追加额外的包裹容器。
 
 > **1.x 版本**：内置组件的子组件会被包裹在一层自定义组件里面，因此内置组件和子组件之间会隔着一层容器，该容器会追加 h5-virtual 到 class 上（除了 view、cover-view、text、scroll-view 和 picker-view 组件外，因为这些组件需要保留子组件的结构，所以沿用 0.x 版本的渲染方式）。
 
@@ -168,6 +168,7 @@ module.exports = {
         <cover-view></cover-view>
         <cover-view></cover-view>
     </map>
+    <!-- scroll-view 沿用 0.x 版本结构 -->
     <element class="h5-wx-component wx-scroll-view">
         <scroll-view class="wx-comp-scroll-view">
             <view></view>
@@ -230,6 +231,8 @@ module.exports = {
 ```
 
 > PS：如上所述，button 标签和 form 标签都不会被渲染成内置组件，如若需要请使用 `wx-` 前缀。
+
+> PS：text 组件内不支持包含 text 组件，如果需要请尽量使用 span 标签。
 
 > PS：因为自定义组件的限制，movable-area/movable-view、swiper/swiper-item、picker-view/picker-view-column 这三组组件必须作为父子存在才能使用，比如 swiper 组件和 swiper-item 必须作为父子组件才能使用，如：
 
