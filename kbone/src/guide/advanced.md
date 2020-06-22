@@ -131,9 +131,9 @@ module.exports = {
 
 > PS：使用 `wx-` 前缀创建的内置组件，其对应的 dom 节点标签名统一是 `WX-COMPONENT`，dom 节点的 behavior 属性表示要渲染的组件名。
 
-内置组件的子组件会被包裹在一层自定义组件里面，因此内置组件和子组件之间会隔着一层容器，该容器会追加 h5-virtual 到 class 上（除了 view、cover-view、text、scroll-view 和 picker-view 组件外，因为这些组件需要保留子组件的结构，所以沿用 0.x 版本的渲染方式）。
+内置组件的子组件会被包裹在一层自定义组件里面，因此内置组件和子组件之间会隔着一层容器，该容器会追加 `h5-virtual` 到 class 上（除了 view、cover-view、text、scroll-view 和 picker-view 组件外，因为这些组件需要保留子组件的结构，所以沿用 0.x 版本的渲染方式）。
 
-> **0.x 版本**：在 0.x 版本中，绝大部分内置组件在渲染时会在外面多包装一层自定义组件，可以近似认为内置组件和其父级节点中间会**多一层 div 容器**，所以会对部分样式有影响。这个 div 容器会追加一个名为 `h5-小写标签名` 的 class，以便对其做特殊处理。另外如果是用 `wx-` 前缀创建的内置组件，会在容器追加的 class 是 h5-wx-component，因为 `wx-` 前缀创建的内置组件对应的 dom 节点标签名都是 `WX-COMPONENT`，为了更方便进行识别，这种情况会再在容器额外追加 `wx-组件名` 的 class。
+> **0.x 版本**：在 0.x 版本中，绝大部分内置组件在渲染时会在外面多包装一层自定义组件，可以近似认为内置组件和其父级节点中间会**多一层 div 容器**，所以会对部分样式有影响。这个 div 容器会追加一个名为 `h5-小写标签名` 的 class，以便对其做特殊处理。另外如果是用 `wx-` 前缀创建的内置组件，会在容器上追加的 class 是 `h5-wx-component`，为了更方便进行识别，这种情况会再在容器上额外追加 `wx-组件名` 的 class。
 
 生成的结构大致如下：
 
@@ -208,6 +208,8 @@ module.exports = {
 ```
 
 > PS：如上所述，button 标签和 form 标签都不会被渲染成内置组件，如若需要请使用 `wx-` 前缀。
+
+> PS：text 组件内不支持包含 text 组件，如若需要请使用 span 标签。
 
 > PS：因为自定义组件的限制，movable-area/movable-view、swiper/swiper-item、picker-view/picker-view-column 这三组组件必须作为父子存在才能使用，比如 swiper 组件和 swiper-item 必须作为父子组件才能使用，如：
 
