@@ -129,7 +129,7 @@ module.exports = {
 * open-data 组件
 * web-view 组件
 
-> PS：使用 `wx-` 前缀创建的内置组件，其对应的 dom 节点标签名统一是 `WX-COMPONENT`，dom 节点的 behavior 属性表示要渲染的组件名。
+使用 `wx-` 前缀创建的内置组件，其对应的 dom 节点标签名统一是 `WX-COMPONENT`，dom 节点的 behavior 属性表示要渲染的组件名。
 
 > **2.x 版本**：基于基础库 2.11.2 的 virtual host 特性实现，除了 view、cover-view、text、scroll-view 和 picker-view 组件外会保留 0.x 版本的渲染方式，其他组件渲染模式和普通 div 标签无异，不会像 0.x 版本和 1.x 版本那样追加额外的包裹容器。
 
