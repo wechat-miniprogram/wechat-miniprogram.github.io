@@ -78,7 +78,7 @@ module.exports = {
 
 需要明确的是，如果没有特殊需求的话，请尽量使用 html 标签来编写代码，使用内置组件时请按需使用。这是因为绝大部分内置组件外层都会被包裹一层自定义组件，如果自定义组件的实例数量达到一定量级的话，理论上是会对性能造成一定程度的影响，所以对于 view、text、image 等会被频繁使用的内置组件，如果没有特殊需求的话请直接使用 div、span、img 等 html 标签替代。
 
-部分内置组件可以直接使用 html 标签替代，比如 input 组件可以使用 input 标签替代。目前已支持的可替代组件列表：
+部分内置组件可以直接使用 html 标签替换，比如 input 组件可以使用 input 标签替换。目前已支持的可替换组件列表：
 
 * `<input />` --> input 组件
 * `<input type="radio" />` --> radio 组件
@@ -89,21 +89,15 @@ module.exports = {
 * `<video></video>`  --> video 组件
 * `<canvas></canvas>` --> canvas 组件
 
-还有一部分内置组件在 html 中没有标签可替代，那就需要使用 `wx-component` 标签或者使用 `wx-` 前缀，基本用法如下：
+还有一部分内置组件在 html 中没有标签可替换，那就需要使用 `wx-` 前缀，基本用法如下：
 
 ```html
-<!-- wx-component 标签用法 -->
-<wx-component behavior="picker" mode="region" @change="onChange">选择城市</wx-component>
-<wx-component behavior="button" open-type="share" @click="onClickShare">分享</wx-component>
-
 <!-- wx- 前缀用法 -->
 <wx-picker mode="region" @change="onChange">选择城市</wx-picker>
 <wx-button open-type="share" @click="onClickShare">分享</wx-button>
 ```
 
-如果使用 `wx-component` 标签表示要渲染小程序内置组件，然后 behavior 字段表示要渲染的组件名；其他组件属性传入和官方文档一致，事件则采用 vue 的绑定方式。
-
-`wx-component` 或 `wx-` 前缀已支持内置组件列表：
+`wx-` 前缀已支持内置组件列表：
 
 * cover-image 组件
 * cover-view 组件
@@ -135,9 +129,11 @@ module.exports = {
 * open-data 组件
 * web-view 组件
 
+> PS：使用 `wx-` 前缀创建的内置组件，其对应的 dom 节点标签名统一是 `WX-COMPONENT`，dom 节点的 behavior 属性表示要渲染的组件名。
+
 内置组件的子组件会被包裹在一层自定义组件里面，因此内置组件和子组件之间会隔着一层容器，该容器会追加 h5-virtual 到 class 上（除了 view、cover-view、text、scroll-view 和 picker-view 组件外，因为这些组件需要保留子组件的结构，所以沿用 0.x 版本的渲染方式）。
 
-> **0.x 版本**：在 0.x 版本中，绝大部分内置组件在渲染时会在外面多包装一层自定义组件，可以近似认为内置组件和其父级节点中间会**多一层 div 容器**，所以会对部分样式有影响。这个 div 容器会追加一个名为 h5-xxx 的 class，例如使用 video 组件，那么会在这个 div 容器上追加一个名为 h5-video 的 class，以便对其做特殊处理。另外如果是用 wx-component 或是 wx- 前缀渲染的内置组件，会在容器追加的 class 是 h5-wx-component，为了更方便进行识别，这种情况会再在容器额外追加 wx-xxx 的 class。
+> **0.x 版本**：在 0.x 版本中，绝大部分内置组件在渲染时会在外面多包装一层自定义组件，可以近似认为内置组件和其父级节点中间会**多一层 div 容器**，所以会对部分样式有影响。这个 div 容器会追加一个名为 `h5-小写标签名` 的 class，以便对其做特殊处理。另外如果是用 `wx-` 前缀创建的内置组件，会在容器追加的 class 是 h5-wx-component，因为 `wx-` 前缀创建的内置组件对应的 dom 节点表情名都是 `WX-COMPONENT`，为了更方便进行识别，这种情况会再在容器额外追加 `wx-组件名` 的 class。
 
 生成的结构大致如下：
 
@@ -160,18 +156,21 @@ module.exports = {
 
 <!-- 1.x 版本生成的结构 -->
 <view>
-    <canvas class="h5-canvas wx-canvas wx-comp-canvas">
+    <!-- 可替换标签内置组件会追加“h5-小写标签名”的 class -->
+    <canvas class="h5-canvas">
         <element class="h5-virtual">
             <cover-view></cover-view>
             <cover-view></cover-view>
         </element>
     </canvas>
-    <map class="h5-wx-component wx-map wx-comp-map">
+    <!-- wx- 前缀创建的内置组件会追加“wx-组件名”的 class -->
+    <map class="h5-wx-component wx-map">
         <element class="h5-virtual">
             <cover-view></cover-view>
             <cover-view></cover-view>
         </element>
     </map>
+    <!-- scroll-view 沿用 0.x 版本结构 -->
     <element class="h5-wx-component wx-scroll-view">
         <scroll-view class="wx-comp-scroll-view">
             <view></view>
@@ -180,20 +179,25 @@ module.exports = {
     </element>
 </view>
 
-<!-- 0.x 版本本生成的结构 -->
+<!-- 0.x 版本生成的结构 -->
 <view>
+    <!-- 可替换标签内置组件外包层会追加“h5-小写标签名”的 class -->
     <element class="h5-canvas">
+        <!-- 可替换标签内置组件会追加“wx-comp-小写标签名”的 class -->
         <canvas class="wx-comp-canvas">
             <cover-view></cover-view>
             <cover-view></cover-view>
         </canvas>
     </element>
+    <!-- wx- 前缀创建的内置组件外包层会追加“h5-wx-component”和“wx-组件名”的 class -->
     <element class="h5-wx-component wx-map">
+        <!-- wx- 前缀创建的内置组件会追加“wx-comp-组件名”的 class -->
         <map class="wx-comp-map">
             <cover-view></cover-view>
             <cover-view></cover-view>
         </map>
     </element>
+    <!-- 同 wx-map -->
     <element class="h5-wx-component wx-scroll-view">
         <scroll-view class="wx-comp-scroll-view">
             <view></view>
@@ -203,7 +207,7 @@ module.exports = {
 </view>
 ```
 
-> PS：button 标签不会被渲染成 button 内置组件，同理 form 标签也不会被渲染成 form 内置组件，如若需要请按照上述原生组件使用说明使用。
+> PS：如上所述，button 标签和 form 标签都不会被渲染成内置组件，如若需要请使用 `wx-` 前缀。
 
 > PS：因为自定义组件的限制，movable-area/movable-view、swiper/swiper-item、picker-view/picker-view-column 这三组组件必须作为父子存在才能使用，比如 swiper 组件和 swiper-item 必须作为父子组件才能使用，如：
 
@@ -219,9 +223,7 @@ module.exports = {
 
 > PS：原生组件的表现在小程序中表现会和 web 端标签有些不一样，具体可参考[原生组件说明文档](https://developers.weixin.qq.com/miniprogram/dev/component/native-component.html)。
 
-> PS：原生组件下的子节点，div、span 等标签会被渲染成 cover-view，img 会被渲染成 cover-image，如若需要使用 button 内置组件请使用 `wx-component` 或 `wx-` 前缀。
-
-> PS：如果将插件配置 runtime.wxComponent 的值配置为 `noprefix`，则可以用不带前缀的方式使用内置组件。
+> PS：原生组件下的子节点，div、span 等标签会被渲染成 cover-view，img 会被渲染成 cover-image，如若需要在原生组件下使用 button 内置组件请使用 `wx-button`。
 
 > PS：某些 Web 框架（如 react）会强行将节点属性值转成字符串类型。对于普通类型数组（如 wx-picker 组件的 value 属性），字符串化会变成`,`连接，kbone 会自动做解析，开发者无需处理；对于对象数组（如 wx-picker 组件的 range 属性），如遇到被自动转成字符串的情况，开发者需要将此对象数组转成 json 串传入。
 
@@ -313,7 +315,7 @@ export default {
 </script>
 ```
 
-> PS：如果使用 react 等其他框架其实和 vue 同理，因为它们的底层都是调用 document.createElement 来创建节点。当在 webpack 插件配置声明了这个自定义组件的情况下，在调用 document.createElement 创建该节点时会被转换成创建 wx-custom-component 标签，类似于内置组件的 wx-component 标签。
+> PS：如果使用 react 等其他框架其实和 vue 同理，因为它们的底层都是调用 document.createElement 来创建节点。当在 webpack 插件配置声明了这个自定义组件的情况下，在调用 document.createElement 创建该节点时会被转换成创建 `WX-CUSTOM-COMPONENT` 标签。
 
 > PS：具体例子可参考 [demo10](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo10)
 
