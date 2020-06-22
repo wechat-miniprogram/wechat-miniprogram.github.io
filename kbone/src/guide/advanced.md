@@ -131,7 +131,7 @@ module.exports = {
 
 使用 `wx-` 前缀创建的内置组件，其对应的 dom 节点标签名统一是 `WX-COMPONENT`，dom 节点的 behavior 属性表示要渲染的组件名。
 
-> **2.x 版本**：基于基础库 2.11.2 的 virtual host 特性实现，除了 view、cover-view、text、scroll-view 和 picker-view 组件外会保留 0.x 版本的渲染方式，其他组件渲染模式和普通 div 标签无异，不会像 0.x 版本和 1.x 版本那样追加额外的包裹容器。
+> **2.x 版本**：基于基础库 2.11.2 的 virtual host 特性实现，除了 view、和 scroll-view 组件外会保留 0.x 版本的渲染方式，其他组件渲染模式和普通 div 标签无异，不会像 0.x 版本和 1.x 版本那样追加额外的包裹容器。
 
 > **1.x 版本**：内置组件的子组件会被包裹在一层自定义组件里面，因此内置组件和子组件之间会隔着一层容器，该容器会追加 `h5-virtual` 到 class 上（除了 view、cover-view、text、scroll-view 和 picker-view 组件外，因为这些组件需要保留子组件的结构，所以沿用 0.x 版本的渲染方式）。
 
