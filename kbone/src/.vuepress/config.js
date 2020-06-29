@@ -19,7 +19,7 @@ module.exports = {
             {text: 'dom/bom 扩展 API', link: '/domextend/'},
             {text: 'Q&A', link: '/qa/'},
             {text: '更新日志', link: '/changelog/'},
-            {text: 'kbone-ui', link: '/ui/intro/', target:'_blank'},
+            {text: 'kbone-ui', link: '/kbone/docs/ui/intro/', target:'_blank'},
             {text: 'GitHub', link: 'https://github.com/wechat-miniprogram/kbone', target:'_blank'},
             {text: '社区', link: 'https://developers.weixin.qq.com/community/minihome/mixflow/1213301129006825473', target:'_blank'},
         ],
