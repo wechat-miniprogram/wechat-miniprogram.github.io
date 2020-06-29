@@ -387,6 +387,12 @@ wx.request({
 
 ## dom 对象
 
+### dom.$$wxComponent
+
+获取该节点所属的小程序自定义组件实例。
+
+> PS：只有 dom.nodeType 为 1 的元素节点可获取。
+
 ### dom.$$trigger
 
 同 [window.$$trigger](#window-trigger)。
