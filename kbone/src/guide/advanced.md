@@ -231,7 +231,7 @@ module.exports = {
 
 > PS：text 组件内不支持包含 text 组件，如若需要请使用 span 标签。
 
-> PS：因为自定义组件的限制，movable-area/movable-view、swiper/swiper-item、picker-view/picker-view-column 这三组组件必须作为父子存在才能使用，比如 swiper 组件和 swiper-item 必须作为父子组件才能使用，如：
+> PS：因为自定义组件的限制，movable-area/movable-view、swiper/swiper-item、picker-view/picker-view-column 这三组组件必须作为父子存在才能使用。比如 swiper 组件和 swiper-item 必须作为父子组件才能使用，如：
 
 ```html
 <wx-swiper>
