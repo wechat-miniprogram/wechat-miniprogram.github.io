@@ -107,7 +107,7 @@
 <br/>
 
 **Q**：已知 location.href，如何封装成对应的小程序的页面路由？<br/>
-**A**：先找到对应的页面路径，假设是 `pages/home/index`，那么封装方式：<span style="word-break: break-all;">`/pages/home/index?type=${type}&targeturl=${encodeURIComponent(location.href)}&search=${encodeURIComponent(location.search)}&hash=${encodeURIComponent(location.hash)}`</span>。type 支持 open（新开页面）、jump（页面内跳转）和 share（分享进入），一般在配置体验版、添加工具模式等情况下使用 type=open 即可；targeturl 是经过编码的 location.href；search 和 hash 可传可不传，如若不传，则取 targeturl 中的 search 和 hash 进行解析。
+**A**：先找到对应的页面路径，假设是 `pages/home/index`，那么封装方式：<span style="word-break: break-all;">`/pages/home/index?type=${type}&targeturl=${encodeURIComponent(location.href)}&search=${encodeURIComponent(location.search)}&hash=${encodeURIComponent(location.hash)}`</span>。type 支持 open（新开页面）、jump（页面内跳转）和 share（分享进入），一般在配置体验版、添加工具模式等情况下使用 type=open 即可；targeturl 是经过编码的 location.href（也可以是 /test/abcde?id=123#hash 这样不带 origin 的 url，以缩减页面路由的长度，kbone 会自动取配置中的 origin 进行拼接）；search 和 hash 可传可不传，如若不传，则取 targeturl 中的 search 和 hash 进行解析。
 
 <br/>
 
