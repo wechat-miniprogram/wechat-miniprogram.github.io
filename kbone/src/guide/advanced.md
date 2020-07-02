@@ -422,7 +422,7 @@ App({
 })
 ```
 
-> PS：app.js 不属于任何页面，所以没有真正的 window 和 document 对象，所有依赖这两个对象实现的代码在这里无法被直接使用。
+> PS：app.js 不属于任何页面，所以没有标准的 window/document 对象，所有依赖这两个对象实现的代码在这里无法被直接使用。不过开发者可以通过 generate.appEntryInject 字段注入 js 代码来修改 window/document 对象。
 
 > PS：具体例子可参考 [demo5](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo5)
 

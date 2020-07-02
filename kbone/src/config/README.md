@@ -184,6 +184,20 @@ app.wxss 输出配置，支持的值：
 
 自定义生成小程序 app.js，值为 webpack entry 配置项中的 key。如果一个 webpack 配置的入口被声明为 app.js 的入口，那么它就不会被作为页面处理。
 
+### generate.appEntryInject
+
+仅在自定义生成小程序 app.js 时生效。app.js 本身不属于任何一个页面，所以无法获得标准的 window/document 对象。但是存在一些情况需要给 window/document 对象设置一些内容以便一些代码可以做一些特殊逻辑，那就可以使用通过此字段来注入一些代码，此代码会在 app.js 运行之前运行。
+
+```js
+// mp-webpack-plugin 配置
+{
+    generate: {
+        appEntryInject: `window.navigator = {product: 'kbone'};`,
+    },
+    // 其他配置...
+}
+```
+
 ### generate.wxCustomComponent
 
 小程序自定义组件使用配置，如果需要在 kbone 项目中使用现有的小程序自定义组件，必须先在此处声明方可使用。需要声明的字段：
