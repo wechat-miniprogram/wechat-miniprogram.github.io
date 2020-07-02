@@ -186,7 +186,7 @@ app.wxss 输出配置，支持的值：
 
 ### generate.appEntryInject
 
-仅在自定义生成小程序 app.js 时生效。app.js 本身不属于任何一个页面，所以无法获得标准的 window/document 对象。但是存在一些情况需要给 window/document 对象设置一些内容以便一些代码可以做一些特殊逻辑，那就可以使用通过此字段来注入一些代码，此代码会在 app.js 运行之前运行。
+仅在自定义生成小程序 app.js 时生效。app.js 本身不属于任何一个页面，所以无法获得标准的 window/document 对象。但是存在一些情况需要给 window/document 对象设置一些内容以便依赖的第三方代码可以做一些特殊逻辑，那就可以使用通过此字段来注入一些代码，此代码会在 app.js 运行之前运行。
 
 ```js
 // mp-webpack-plugin 配置
