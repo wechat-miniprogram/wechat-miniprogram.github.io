@@ -119,6 +119,11 @@
 **Q**：react/preact 进行多页开发的时候，在页面关闭时没有执行 componentWillUnmount 钩子要怎么处理？<br/>
 **A**：react/preact 并没有提供根组件实例的销毁方法（如 vue.$destroy），因此开发者可自行监听 wxunload 或 beforeunload 事件来进行页面的销毁工作，比如调用 render 方法渲染一个空节点，强行触发页面组件的 componentWillUnmount 钩子。
 
+<br/>
+
+**Q**：在小程序 tabbar 页面里使用了单页模式（比如 vue-router）,所有关于路由的配置都加上了，为什么进入页面会白屏？
+**A**：这种情况大部分是因为单页配置的路由没有响应 `/` 导致。小程序 tabbar 的配置不支持在页面路径后面追加参数，导致进入页面时默认进入的 path 是 `/`，如果开发者没有响应此 path，那么页面就是空的。可以尝试在单页配置的路由上补充 `/` 的跳转（比如 vue-router 可以通过配置 redirect 让 `/` 响应并自动跳转到想要展示的路由上）。
+
 ## 反馈
 
 如果还遇到其他问题，可在 [issue](https://github.com/wechat-miniprogram/kbone/issues) 中反馈。
