@@ -1,4 +1,8 @@
 const path = require('path')
+const removeDiacritics = require('diacritics').remove
+
+const rControl = /[\u0000-\u001f]/g
+const rSpecial = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'“”‘’–—<>,.?/]+/g
 
 module.exports = {
     title: 'wechat-miniprogram / kbone',
@@ -92,5 +96,21 @@ module.exports = {
     },
     markdown: {
         lineNumbers: true,
+        slugify: str => {
+            if (str === 'app') return 'config-app'
+            else return removeDiacritics(str)
+                // Remove control characters
+                .replace(rControl, '')
+                // Replace special characters
+                .replace(rSpecial, '-')
+                // Remove continuous separators
+                .replace(/\-{2,}/g, '-')
+                // Remove prefixing and trailing separators
+                .replace(/^\-+|\-+$/g, '')
+                // ensure it doesn't start with a number (#121)
+                .replace(/^(\d)/, '_$1')
+                // lowercase
+                .toLowerCase()
+        },
     },
 }
