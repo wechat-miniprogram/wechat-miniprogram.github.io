@@ -11,16 +11,19 @@ export default ({
   // ...apply enhancements to the app
   Vue.use(KboneUI)
 
-  if (window.MutationObserver) {
-    const observer = new window.MutationObserver(() => {
-      if (!location.hash) observer.disconnect()
+  options.mounted = () => {
+    // 初始滚动处理
+    if (window.MutationObserver) {
+      const observer = new window.MutationObserver(() => {
+        if (!location.hash) observer.disconnect()
 
-      const scrollDom = document.querySelector(location.hash)
-      if (scrollDom) {
-        scrollDom.scrollIntoView(true)
-        observer.disconnect()
-      }
-    })
-    observer.observe(document.body, {childList: true, subtree: true})
+        const scrollDom = document.querySelector(location.hash)
+        if (scrollDom) {
+          scrollDom.scrollIntoView(true)
+          observer.disconnect()
+        }
+      })
+      observer.observe(document.body, {childList: true, subtree: true})
+    }
   }
 }
