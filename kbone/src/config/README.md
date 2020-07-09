@@ -332,7 +332,11 @@ app 补充配置，除 pages、window、tabBar、subpackages、preloadRule 配�
 
 ### global.share
 
-是否支持分享，若支持，会展示分享按钮并调用 app 的 onShareAppMessage 按钮，默认 `false`。
+是否支持转发，若支持，会展示转发按钮并调用 app 的 onShareAppMessage 事件，默认 `false`。
+
+### global.shareTimeline
+
+是否支持分享朋友圈，会展示分享朋友圈按钮并调用 app 的 onShareTimeline 事件，默认 `false`。
 
 ### global.windowScroll
 
