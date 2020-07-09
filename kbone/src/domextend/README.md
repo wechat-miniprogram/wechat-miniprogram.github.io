@@ -250,36 +250,96 @@ window.$$publish('hello', {name: 'june'})
 
 ### window.onShareAppMessage
 
-开启 share 配置后，当进行页面分享时会执行的回调。此回调可以返回一个对象，作为小程序处理分享的参数。
+开启 share 配置后，当进行页面转发时会执行的回调。此回调可以返回一个对象，作为小程序处理转发的参数。
 
 | 属性名 | 类型 | 描述 |
 |---|---|---|
-| data | Object | 小程序被分享页面 onShareAppMessage 回调传入的参数，可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShareAppMessage-Object-object) |
+| data | Object | 小程序被转发页面 onShareAppMessage 回调传入的参数，可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShareAppMessage-Object-object) |
 
-除了官方支持的参数外，还支持额外的参数：
+返回对象中除了官方支持的参数外，还支持额外的参数：
 
 | 属性名 | 类型 | 描述 |
 |---|---|---|
-| data.miniprogramPath | String | 默认传入的 path 会被改造成 kbone 能解析的路径，如果需要分享原始的小程序页面路由，可传入此参数 |
+| miniprogramPath | String | 默认传入的 path 会被改造成 kbone 能解析的路径，如果需要转发原始的小程序页面路由，可传入此参数 |
 
 ```js
 window.onShareAppMessage = function(data) {
-    // 当页面被分享时会进入这个回调
-    // 返回一个对象，作为小程序处理分享的参数，对象内容和小程序页面 onShareAppMessage 回调可返回对象内容基本一致，具体可参考官方文档：https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShareAppMessage-Object-object
+    // 当页面被转发时会进入这个回调
+    // 返回一个对象，作为小程序处理转发的参数，对象内容和小程序页面 onShareAppMessage 回调可返回对象内容基本一致，具体可参考官方文档：https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShareAppMessage-Object-object
     return {
         title: 'test title',
         path: '/a', // 当前页面，这里的 path 是页面 url，而不是小程序路由
         // path: 'https://test.miniprogram.com/a', // 当前页面的完整 url，同上
         // path: '/b', // 其他页面，同上
         // path: 'https://test.miniprogram.com/b', // 其他页面的完整 url，同上
-        // miniprogramPath: `/pages/page2/index?type=share&targeturl=${encodeURIComponent('https://test.miniprogram.com/b')}`, // 如果需要分享原始小程序页面路由，可传递此参数
+        // miniprogramPath: `/pages/page2/index?type=share&targeturl=${encodeURIComponent('/b')}`, // 如果需要分享原始小程序页面路由，可传递此参数
     }
 }
 ```
 
-> PS：返回的对象中，path 是要分享页面的 url（支持跨页面分享），而不是页面路由。如果不返回默认取 window.locaiton.href。
+> PS：返回的对象中，path 是要转发页面的 url（支持跨页面转发），而不是页面路由。如果不返回默认取 window.locaiton.href。
 
 > PS：miniprogramPath 的组装方式可参考 [QA 说明](../qa/#%E7%AD%94%E7%96%91)。
+
+### window.onShareTimeline
+
+开启 shareTimeline 配置后，当进行页面分享朋友圈时会执行的回调。此回调可以返回一个对象，作为小程序处理分享朋友圈的参数。
+
+返回对象中除了官方支持的参数外，还支持额外的参数：
+
+| 属性名 | 类型 | 描述 |
+|---|---|---|
+| miniprogramQuery | String | 默认传入的 query 会被改造成 kbone 能解析的参数，如果需要转发原始的小程序页面参数，可传入此参数 |
+
+```js
+window.onShareTimeline = function(data) {
+    // 当页面被分享朋友圈时会进入这个回调
+    // 返回一个对象，作为小程序处理分享朋友圈的参数，对象内容和小程序页面 onShareTimeline 回调可返回对象内容基本一致，具体可参考官方文档：https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShareTimeline
+    return {
+        title: 'test title',
+        query: 'a=123&b=321', // 这里的 query 是页面 url 中的 search 参数，而不是小程序路由中的参数
+        // miniprogramQuery: `type=share&targeturl=${encodeURIComponent('/a?a=123&b=321')}`, // 如果需要分享原始小程序页面路由参数，可传递此参数
+    }
+}
+```
+
+> PS：返回的对象中，query 是要转发页面的 search，而不是页面路由参数。如果不返回默认取 locaiton.search。
+
+> PS：miniprogramPath 的组装方式可参考 [QA 说明](../qa/#%E7%AD%94%E7%96%91)。
+
+### window.onAddToFavorites
+
+当页面被收藏时会执行的回调。此回调可以返回一个对象，作为小程序处理收藏的参数。
+
+| 属性名 | 类型 | 描述 |
+|---|---|---|
+| data | Object | 小程序被转发页面 onAddToFavorites 回调传入的参数，可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onAddToFavorites-Object-object) |
+
+返回对象中除了官方支持的参数外，还支持额外的参数：
+
+| 属性名 | 类型 | 描述 |
+|---|---|---|
+| miniprogramQuery | String | 默认传入的 query 会被改造成 kbone 能解析的参数，如果需要转发原始的小程序页面参数，可传入此参数 |
+
+```js
+window.onAddToFavorites = function(data) {
+    // 当页面被收藏时会进入这个回调
+    // 返回一个对象，作为小程序处理收藏的参数，对象内容和小程序页面 onAddToFavorites 回调可返回对象内容基本一致，具体可参考官方文档：https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onAddToFavorites-Object-object
+    return {
+        title: 'test title',
+        query: 'a=123&b=321', // 这里的 query 是页面 url 中的 search 参数，而不是小程序路由中的参数
+        // miniprogramQuery: `type=share&targeturl=${encodeURIComponent('/a?a=123&b=321')}`, // 如果需要收藏原始小程序页面路由参数，可传递此参数
+    }
+}
+```
+
+> PS：返回的对象中，query 是要转发页面的 search，而不是页面路由参数。如果不返回默认取 locaiton.search。
+
+> PS：miniprogramPath 的组装方式可参考 [QA 说明](../qa/#%E7%AD%94%E7%96%91)。
+
+### window.onTabItemTap
+
+tabbar 被点击时会执行的回调，详情可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onTabItemTap-Object-object)。
 
 ### window.onDealWithNotSupportDom
 
