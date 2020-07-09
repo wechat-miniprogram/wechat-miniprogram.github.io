@@ -91,8 +91,8 @@
 
 <br/>
 
-**Q**：为什么 scroll-view 的 scroll-into-view 属性有时可用有时不可用？<br/>
-**A**：因为 scroll-into-view 找寻的节点只能在当前 shadow-tree 下，因此只有传入 `domSubTreeLevel` 配置对应层级内的 div、img 标签对应的 id 方能生效。如果 `domSubTreeLevel` 的值为 5，那么只有 scroll-view 下 5 层节点内的 div、img 标签上的 id 可以作为该 scroll-view 上 scroll-into-view 的值。
+**Q**：为什么 v1.x 版本的 scroll-view 的 scroll-into-view 属性有时可用有时不可用？<br/>
+**A**：因为 v1.x 版本的 scroll-into-view 找寻的节点只能在当前 shadow-tree 下，因此只有传入 `domSubTreeLevel` 配置对应层级内的 div、img 标签对应的 id 方能生效。如果 `domSubTreeLevel` 的值为 5，那么只有 scroll-view 下 5 层节点内的 div、img 标签上的 id 可以作为该 scroll-view 上 scroll-into-view 的值。v2.x 版本则无此问题。
 
 <br/>
 
