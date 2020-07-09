@@ -11,9 +11,12 @@ export default ({
   // ...apply enhancements to the app
   Vue.use(KboneUI)
 
+  // 初始滚动处理
   options.mounted = () => {
-    // 初始滚动处理
-    if (window.MutationObserver) {
+    const scrollDom = document.querySelector(location.hash)
+    if (scrollDom) {
+      scrollDom.scrollIntoView(true)
+    } else if (window.MutationObserver) {
       const observer = new window.MutationObserver(() => {
         if (!location.hash) observer.disconnect()
 
