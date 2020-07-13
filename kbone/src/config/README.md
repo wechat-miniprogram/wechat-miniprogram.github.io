@@ -417,6 +417,10 @@ document.documentElement.style.backgroundColor = '#fffbe7'
 
 同 [global.share](#global-share)。
 
+### pages[[页面名称](#页面名称)].shareTimeline
+
+同 [global.shareTimeline](#global-sharetimeline)。
+
 ### pages[[页面名称](#页面名称)].windowScroll
 
 同 [global.windowScroll](#global-windowscroll)。
