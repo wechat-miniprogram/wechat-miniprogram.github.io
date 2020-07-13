@@ -20,7 +20,7 @@ export default ({
       const observer = new window.MutationObserver(() => {
         if (!location.hash) observer.disconnect()
 
-        const scrollDom = document.querySelector(location.hash)
+        const scrollDom = document.querySelector(decodeURIComponent(location.hash))
         if (scrollDom) {
           scrollDom.scrollIntoView(true)
           observer.disconnect()
