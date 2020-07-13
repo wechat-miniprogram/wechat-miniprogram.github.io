@@ -616,3 +616,57 @@ module.exports = {
 后续按照正常方式进行构建即可。构建完成后的操作和原生的云开发模式一样，具体可参考[官方提供的云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)。
 
 > PS：具体例子可参考 [demo19](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo19)
+
+## 加载视图
+
+kbone 本身是牺牲了一定程度的性能来换取更加全面的 Web 端特性兼容，对于复杂页面可能会存在较长的页面渲染时间，这种时候页面通常会处于白屏阶段，开发者无法进行操控。因此 kbone 提供了一种方式来处理这个渲染阶段：
+
+1. 创建一个用于放置加载视图的目录
+
+命名和路径不做要求，我们此处将其命名为 loading-view，放置在项目的 src 下。
+
+2. 在该目录创建一个小程序自定义组件
+
+该自定义组件即会作为 kbone 渲染阶段展示在页面中的加载视图，命名默认为 index，开发者也可以通过其他配置来调整这个命名。
+
+```
+└─ src
+   └─ loading-view // 加载视图目录
+      ├─ index.js
+      ├─ index.wxss
+      ├─ index.wxml
+      └─ index.json
+```
+
+3. 修改 webpack 插件配置
+
+```js
+module.exports = {
+    global: {
+        loadingView: path.join(__dirname, '../src/loading-view'), // 加载视图所在的目录，kbone 会默认取该目录下名为 index 的组件
+    },
+    // ... other options
+}
+```
+
+该加载视图的大小会被设置成和屏幕一样，且使用 fixed 定位。开发者可以在此自定义组件中实现需要展示的内容/逻辑。在页面渲染完成后，页面会覆盖在这个加载视图上面，直到页面 onReady 钩子触发后一段时间，才会销毁加载视图。
+
+作为加载视图的自定义组件可以接收到 pageName 参数，表示当前所在的页面名称：
+
+```js
+Component({
+    properties: {
+        pageName: {
+            type: String,
+            value: '',
+        },
+    },
+
+    attached() {
+        console.log('page name: ', this.data.pageName)
+    },
+})
+```
+
+> PS：更多详细配置可以[点此查看](../config/)
+> PS：具体例子可参考 [demo3](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo3)

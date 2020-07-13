@@ -330,6 +330,52 @@ app 补充配置，除 pages、window、tabBar、subpackages、preloadRule 配�
 
 页面加载时是否需要 loading 提示，默认空，即不出现提示。
 
+### global.loadingView
+
+页面加载时的视图展示，默认空，即不展示任何东西。加载视图是一个大小和屏幕一样且使用 fixed 定位的自定义组件，使用时将要作为加载视图的自定义组件命名为 index，然后将其所在目录传入到 loadingView 配置中，在构建时该目录会被拷贝到小程序项目根目录，在运行过程中 kbone 会默认取该目录下名为 index 的组件作为加载视图。
+
+```js
+// mp-webpack-plugin 配置
+{
+    global: {
+        loadingView: path.join(__dirname, '../src/loading-view'), // 加载视图所在的目录，kbone 会默认取该目录下名为 index 的组件
+    },
+    // 其他配置...
+}
+```
+
+加载视图自定义组件可接收一个 pageName 参数，表示当前所在的页面名称
+
+```js
+Component({
+    properties: {
+        pageName: {
+            type: String,
+            value: '',
+        },
+    },
+
+    attached() {
+        console.log('page name: ', this.data.pageName)
+    },
+})
+```
+
+### global.loadingViewName
+
+在使用 [global.loadingView](#global-loadingview) 的时候，默认取名为 index 的自定义组件作为加载视图，如果想要取其他名字的自定义组件，则可以指定此配置。
+
+```js
+// mp-webpack-plugin 配置
+{
+    global: {
+        loadingView: path.join(__dirname, '../src/loading-view'), // 加载视图所在的目录
+        loadingViewName: 'loading', // 指定取名为 loading 的自定义组件作为加载视图
+    },
+    // 其他配置...
+}
+```
+
 ### global.share
 
 是否支持转发，若支持，会展示转发按钮并调用 app 的 onShareAppMessage 事件，默认 `false`。
@@ -412,6 +458,14 @@ document.documentElement.style.backgroundColor = '#fffbe7'
 ### pages[[页面名称](#页面名称)].loadingText
 
 同 [global.loadingText](#global-loadingtext)。
+
+### pages[[页面名称](#页面名称)].loadingView
+
+同 [global.loadingView](#global-loadingview)。
+
+### pages[[页面名称](#页面名称)].loadingViewName
+
+同 [global.loadingViewName](#global-loadingviewname)。
 
 ### pages[[页面名称](#页面名称)].share
 
