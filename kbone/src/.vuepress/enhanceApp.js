@@ -13,14 +13,14 @@ export default ({
 
   // 初始滚动处理
   options.mounted = () => {
-    const scrollDom = document.querySelector(location.hash)
+    const scrollDom = document.querySelector(decodeURIComponent(location.hash))
     if (scrollDom) {
       scrollDom.scrollIntoView(true)
     } else if (window.MutationObserver) {
       const observer = new window.MutationObserver(() => {
         if (!location.hash) observer.disconnect()
 
-        const scrollDom = document.querySelector(location.hash)
+        const scrollDom = document.querySelector(decodeURIComponent(location.hash))
         if (scrollDom) {
           scrollDom.scrollIntoView(true)
           observer.disconnect()
