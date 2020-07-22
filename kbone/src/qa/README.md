@@ -96,8 +96,8 @@
 
 <br/>
 
-**Q**：vue 会将值为 false 的属性剔除，对于默认值为 true 的属性想要设置成 false 要怎么办？<br/>
-**A**：可以将该属性设置成其他 falsy 的值，比如空串。例子：`<textarea adjust-position="" />`。
+**Q**：某些 Web 框架会将值为 false 的属性剔除，对于默认值为 true 的属性想要设置成 false 要怎么办？<br/>
+**A**：可以将该属性值设置成 `'false'` 字符串。例子：`<textarea adjust-position="false" />`。
 
 <br/>
 
