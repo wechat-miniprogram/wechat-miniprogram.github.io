@@ -275,9 +275,13 @@ app.wxss 输出配置，支持的值：
 
 配置生成到 package.json 中 `miniprogram-render` npm 包的版本串，默认是 `latest`。
 
+如若需要安装 1.x 版本，除了直接指定版本号外，也可将值设置成 `core-v1`。
+
 ### generate.elementVersion
 
 配置生成到 package.json 中 `miniprogram-element` npm 包的版本串，默认是 `latest`。
+
+如若需要安装 1.x 版本，除了直接指定版本号外，也可将值设置成 `core-v1`。
 
 ## runtime
 
