@@ -248,7 +248,7 @@ module.exports = {
 
 > PS：某些 Web 框架（如 react）会强行将节点属性值转成字符串类型。对于普通类型数组（如 wx-picker 组件的 value 属性），字符串化会变成`,`连接，kbone 会自动做解析，开发者无需处理；对于对象数组（如 wx-picker 组件的 range 属性），如遇到被自动转成字符串的情况，开发者需要将此对象数组转成 json 串传入。
 
-> PS：某些框架对于布尔值的属性会进行丢弃（比如 react），不会执行 setAttribute 操作，对于这种情况可以使用有值的字符串和 `'false'` 字符串来代替 true 和 false，也可以通过手动调用 setAttribute 来设置属性。
+> PS：某些框架对于布尔值的属性会进行丢弃，不会执行 setAttribute 操作，对于这种情况可以使用有值的字符串和 `'false'` 字符串来代替 true 和 false，也可以通过手动调用 setAttribute 或者按照下述[批量设置节点属性](#批量设置节点属性)方法来设置属性。
 
 > PS：具体例子可参考 [demo3](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo3)
 
@@ -339,6 +339,60 @@ export default {
 > PS：如果使用 react 等其他框架其实和 vue 同理，因为它们的底层都是调用 document.createElement 来创建节点。当在 webpack 插件配置声明了这个自定义组件的情况下，在调用 document.createElement 创建该节点时会被转换成创建 `WX-CUSTOM-COMPONENT` 标签。
 
 > PS：具体例子可参考 [demo10](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo10)
+
+## 批量设置节点属性
+
+在一些 Web 框架中，设置布尔值相关的一些属性，比如 video 节点的 controls 属性，在小程序环境中默认为 `true`，如果想要设置成 `false` 会发现无论如何都设置不上去，除非手动调用节点的 setAttribute 方法。这是因为这些 Web 框架可能会对一些值为 `false` 的属性进行 removeAttribute 操作，导致 kbone 认为这个属性没有被设置转而使用默认值；但是当开发者设置 `'false'` 字符串（空串或者数值 0 也会被当成真值处理）的时候，这些 Web 框架又会认为是 `true`，然后将值转为属性名来处理，比如 `controls=""` 会被转成 `controls="controls"`。所以当默认值为 `true` 的情况，就会发现怎么也无法将其置为 `false`。
+
+这种情况开发者手动调用 setAttribute 操作即可解决，但是为了可以更方便地应对这种情况，kbone 提供了一种特殊的属性 `kbone-attribute-map`，支持批量设置属性，同时可以绕过 Web 框架的属性设置检查：
+
+```html
+<!-- 以 vue 为例 -->
+<video :kbone-attribute-map="{controls: false}"></video>
+```
+
+kbone 在检测到通过 setAttribute 设置 `kbone-attribute-map` 属性时，会将对象的所有 key 取出来进行一遍 setAttribute 操作；如果存在上一次设置的 `kbone-attribute-map` 旧值时，会将旧值中存在但是新值中不存在的 key 进行 removeAttribute 操作。
+
+另外有些 Web 框架不支持属性值为对象，这种情况也可以将该值转成 json 串来使用：
+
+```js
+this.kboneAttributeMap = JSON.stringify({controls: false})
+```
+
+```html
+<!-- 以 vue 为例 -->
+<video :kbone-attribute-map="kboneAttributeMap"></video>
+```
+
+## 批量设置事件监听器
+
+和[批量设置节点属性](#批量设置节点属性)原因类似，在一些 Web 框架中会过滤掉自定义事件，导致监听节点事件必须通过手动调用节点的 addEventListener 来设置事件监听器。
+
+这种情况开发者手动调用 addEventListener/removeEventListener 操作即可解决，但是为了可以更方便地为了应对这种情况，kbone 提供了一种特殊的属性 `kbone-event-map`，支持批量设置事件监听器，同时可以绕过 Web 框架的事件监听检查：
+
+```html
+<!-- 以 vue 为例 -->
+<wx-picker-view :kbone-event-map="{change: () => log('change')}"></wx-picker-view>
+```
+
+kbone 在检测到通过 setAttribute 设置 `kbone-event-map` 属性时，会将对象的所有 key 取出来进行一遍 addEventListener 操作；如果存在上一次设置的 `kbone-event-map` 旧值时，则会在进行新值 addEventListener 操作之前将旧值中的 key 进行 removeEventListener 操作。
+
+另外有些 Web 框架不支持属性值为对象，这种情况也可以将该值转成 json 串来使用，注意这里转成 json 串的时候，原本的 js 函数用一个字符串代替，然后 kbone 会以该字符串作为属性从 window 对象中取出值作为事件监听器函数使用：
+
+```js
+const pickerViewChangeTs = +new Date()
+window[pickerViewChangeTs] = evt => console.log('change')
+this.state.eventMap = JSON.stringify({
+    change: pickerViewChangeTs,
+})
+```
+
+```html
+<!-- 以 react 为例 -->
+<wx-picker-view kbone-event-map={this.state.eventMap}></wx-picker-view>
+```
+
+> PS：kbone 不会自动做 removeEventListener 操作，需要开发者手动移除。开发者可以传一个空对象或空串来表示移除上一次通过此方法添加的事件监听器。
 
 ## 使用 rem
 
