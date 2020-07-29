@@ -552,7 +552,7 @@ window.location.testFunc('abc', 123) // 会执行 beforeAspect，再调用 testF
 
 > PS：具体 API 可参考 [dom/bom 扩展 API](../domextend/) 文档。
 
-## 事件系统
+## 事件系统扩展
 
 kbone 里节点事件没有直接复用小程序的捕获冒泡事件体系，原因在于：
 
@@ -691,7 +691,7 @@ module.exports = {
 
 > PS：具体例子可参考 [demo19](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo19)
 
-## 加载视图
+## 页面渲染完成之前的加载视图
 
 kbone 对于复杂页面可能会存在较长的页面渲染时间，这种时候页面通常会处于白屏阶段，开发者无法进行操控。因此 kbone 提供了一种方式来处理这个渲染阶段：
 
