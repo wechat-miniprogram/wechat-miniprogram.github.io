@@ -672,6 +672,82 @@ Component({
 > PS：更多详细配置可以[点此查看](../config/)
 > PS：具体例子可参考 [demo3](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo3)
 
+## 使用 Worker 和 SharedWorker
+
+默认 window.Worker/window.SharedWorker 值为 undefined，如果要使用 window.Worker/window.SharedWorker 则需要按以下步骤操作：
+
+1. 修改 webpack 配置
+
+因为小程序要求所有 worker 文件放在一个目录，所以需要修改 worker 文件的生成目录，以下以使用 worker-loader 为例：
+
+```js
+// webpack.mp.config.js
+module.exports = {
+    module: {
+        rules: [{
+            test: /sharedWorker\.js$/,
+            use: [{
+                loader: 'worker-loader',
+                options: {
+                    name: 'workers/[hash].worker.js',
+                },
+            }, 'babel-loader'],
+        }, {
+            test: /worker\.js$/,
+            use: [{
+                loader: 'worker-loader',
+                options: {
+                    name: 'workers/[hash].worker.js',
+                },
+            }, 'babel-loader'],
+        }],
+    },
+    // ... other options
+}
+```
+
+例子中同时包含了 Worker 和 SharedWorker，根据配置将其构建到 common/workers 中。
+
+> PS：需要注意的是，官方提供的 demo 输出目标是 common，所以配置 `workers/xxx.js` 会输出到小程序目录的 `common/workers/xxx.js` 下。
+
+2. 修改 webpack 插件配置
+
+配置 generate.worker 为 `true`。这样在构建时，worker 文件所在目录下的所有 js 文件都会被特殊处理，而不会被作为页面依赖生成。
+
+```js
+module.exports = {
+    generate: {
+		worker: true,
+    },
+    // ... other options
+}
+```
+
+> PS：此配置项也可以是个字符串，如果配置字符串则表示会将该字符串代表的目录作为 worker 文件所在目录。配置为 true 的话则会取 `common/workers`
+
+3. 编写 js 代码
+
+```js
+// 这里以使用 worker-loader 为例
+import MyWorker from '../worker/worker'
+
+const worker = new MyWorker()
+worker.onmessage = evt => console.log(evt.data)
+worker.postMessage({a: 123})
+```
+
+受限于小程序 worker 的实现，有以下几点要注意：
+
+* Worker/SharedWorker 不支持 data url 和 options 参数。
+* 小程序 worker 并发限制为 1 个，所以 Worker 只能有一个实例，要创建新 Worker 时必须先销毁旧的 Worker 实例；同一个 url 的 SharedWorker 可以被重复创建，但是创建不同 url 的 SharedWorker 时，需要先销毁旧的 SharedWorker 实例。
+* Worker 里可以访问 navigator/location 对象的只读属性，但是不支持使用 XMLHttpRequest 对象。
+* 页面卸载时，会自动销毁该页面创建的所有 Worker/SharedWorker 实例。
+* 更多限制可查看[小程序官方 worker 文档](https://developers.weixin.qq.com/miniprogram/dev/framework/workers.html)。
+
+小程序的 worker 提供了真正的多线程能力，如果不需要此能力只是需要兼容接口的话，开发者也可以使用[扩展 dom/bom 对象和 API ](#扩展-dom-bom-对象和-api)的方式来自行实现兼容接口。
+
+> PS：具体例子可参考 [demo25](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo25)
+
 ## 云开发
 
 云开发是小程序官方提供的一种云端能力使用方案，在 kbone 中使用云开发能力可按以下步骤进行即可。

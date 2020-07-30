@@ -283,6 +283,34 @@ app.wxss 输出配置，支持的值：
 
 如若需要安装 1.x 版本，除了直接指定版本号外，也可将值设置成 `core-v1`。
 
+### generate.worker
+
+是否要使用 Worker/SharedWorker，默认是 `false`。window.Worker/window.SharedWorker 的默认不可用，开启此项后会使用小程序的 worker 能力来模拟 window.Worker/window.SharedWorker。
+
+小程序要求所有 worker 文件必须在一个目录中，所以此项的值也可为一个字符串，比如 `common/mp/workers`，字符串的值表示 worker 文件所在目录相对于小程序项目根目录的路径。假如设置此项为 `true`，则默认取目录 `common/workers` 作为 worker 文件所在目录。
+
+```js
+// mp-webpack-plugin 配置
+
+// 设置布尔值
+{
+    generate: {
+        worker: true, // 取目录：common/workers
+    },
+    // 其他配置...
+}
+
+// 设置字符串
+{
+    generate: {
+        worker: 'common/mp/workers', // 取目录：common/mp/workers
+    },
+    // 其他配置...
+}
+```
+
+> PS：受限于小程序限制，worker 里不可使用 XMLHttpRequest 对象，不可使用 wx 相关接口，并且限制只能有一个小程序 worker 实例。更多限制可查看[小程序官方 worker 文档](https://developers.weixin.qq.com/miniprogram/dev/framework/workers.html)。
+
 ## runtime
 
 运行时配置。
