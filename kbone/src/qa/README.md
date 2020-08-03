@@ -16,6 +16,11 @@
 
 <br/>
 
+**Q**：webpack 构建模式能否指定成 `development`？<br/>
+**A**：不建议将构建模式指定成 **`production`** 之外的模式，以免出现奇怪的问题。比如 `development` 可能就会引入 eval 调用，这在小程序中是不支持的。如果需要调试业务代码，可以通过调整 minimizer 配置来取消压缩处理；如果需要调试第三方代码，可以通过设置 resolve.alias 来将指向第三方包未压缩的入口文件。
+
+<br/>
+
 **Q**：对于像 getBoundingClientRect 等接口，有没有什么兼容方案？<br/>
 **A**：部分无法直接适配的接口会以 [dom/bom 扩展 api](../domextend/) 的方式提供。
 
