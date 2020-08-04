@@ -585,7 +585,7 @@ element 对象复用，默认 `true`。当页面被关闭时会回收对象，�
 
 ### optimization.setDataMode
 
-页面更新时 setData 处理模式，默认使用优化模式，对于小范围更新采用 data path 的方式，对于大范围更新采用全量 setData 的模式。
+页面更新时使用的 setData 模式，默认使用优化模式：对于小范围更新使用 data path 的方式，对于大范围更新则使用全量 setData 的方式。
 
 如果需要所有场景都使用全量 setData，可以将此项设为 `original`。
 
