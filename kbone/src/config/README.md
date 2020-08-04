@@ -583,6 +583,12 @@ element 对象复用，默认 `true`。当页面被关闭时会回收对象，�
 
 如果设置 dom 属性时存在某个属性的值超过一定值，则进行删减，默认空，即不做删减。使用场景可参考 [optimization.styleValueReduce](#optimization-stylevaluereduce)。
 
+### optimization.setDataMode
+
+页面更新时 setData 处理模式，默认使用优化模式，对于小范围更新采用 data path 的方式，对于大范围更新采用全量 setData 的模式。
+
+如果需要所有场景都使用全量 setData，可以将此项设为 `original`。
+
 ## projectConfig
 
 项目配置，会被合并到 project.config.json。
