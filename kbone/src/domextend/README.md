@@ -114,6 +114,7 @@ window.$$getComputedStyle(document.querySelector('div'), ['backgroundColor']).th
 * window.history
 * window.localStorage
 * window.sessionStorage
+* window.XMLHttpRequest
 * window.event
 * window
 * document
