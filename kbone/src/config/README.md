@@ -105,7 +105,7 @@ app.wxss 输出配置，支持的值：
 
 ### generate.subpackages
 
-小程序分包，暂不支持独立分包，详细注意事项可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/framework/subpackages/basic.html)。其值是一个以包名称作为 key 的对象，每项的值是该分包内包含的[页面名称](#页面名称)。
+小程序分包，暂不支持独立分包，详细注意事项可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/framework/subpackages/basic.html)。其值是一个以分包名称作为 key 的对象，每项的值是该分包内包含的[页面名称](#页面名称)。
 
 ```js
 // mp-webpack-plugin 配置
@@ -114,6 +114,29 @@ app.wxss 输出配置，支持的值：
         subpackages: {
             package1: ['list'],
             package2: ['detail'],
+        },
+    },
+    // 其他配置...
+}
+```
+
+当然，你可能需要追加一些分包的额外配置，比如插件配置等，这样的话要将分包内容改成一个对象，其中 pages 表示该分包内包含的[页面名称](#页面名称)，其他配置则补充在对象中即可，如下述例子中的 plugins 配置：
+
+```js
+// mp-webpack-plugin 配置
+{
+    generate: {
+        subpackages: {
+            package1: ['list'],
+            package2: {
+                pages: ['detail'],
+                plugins: {
+                    myPlugin: {
+                        version: '1.0.0',
+                        provider: 'wxidxxxxxxxxxxxxxxxx',
+                    },
+                },
+            },
         },
     },
     // 其他配置...
