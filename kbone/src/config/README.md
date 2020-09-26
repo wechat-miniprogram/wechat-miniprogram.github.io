@@ -649,6 +649,22 @@ element 对象复用，默认 `true`。当页面被关闭时会回收对象，�
 }
 ```
 
+## packageConfigOverride
+
+包配置，会直接覆盖掉默认的 package.json。配置此项后，[packageConfig](#packageconfig)/[generate.renderVersion](#generate-renderversion)/[generate.elementVersion](#generate-elementversion) 配置将被忽略，请慎用。
+
+```js
+// mp-webpack-plugin 配置
+{
+    packageConfigOverride: {
+        dependencies: {
+            'miniprogram-element-for-xxxx': 'test',
+        },
+    },
+    // 其他配置...
+}
+```
+
 ## sitemapConfig
 
 sitemap 配置，会被写入到项目根目录的 sitemap.json 中。
