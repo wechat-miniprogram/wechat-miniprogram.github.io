@@ -39,7 +39,7 @@ npm run web
 npm run build
 ```
 
-> PS：项目基于 webpack 构建，关于 webpack 方面的配置可以[点此查看](https://webpack.js.org/configuration/)，而关于小程序构建相关的详细配置细节可以[参考此文档](./guide/tutorial.html)。
+> PS：项目基于 webpack 构建，关于 webpack 方面的配置可以[点此查看](https://webpack.js.org/configuration/)，而关于小程序构建相关的详细配置细节可以[参考此文档](../../guide/tutorial.html)。
 
 
 **4. 使用 kbone-ui 项目**
