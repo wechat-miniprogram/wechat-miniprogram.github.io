@@ -3,6 +3,8 @@ const removeDiacritics = require('diacritics').remove
 
 const rControl = /[\u0000-\u001f]/g
 const rSpecial = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'“”‘’–—<>,.?/]+/g
+const isMirror = process.env.TYPE === 'mirror'
+const prefix = isMirror ? '/miniprogram' : ''
 
 module.exports = {
     title: 'wechat-miniprogram / kbone',
@@ -10,8 +12,8 @@ module.exports = {
     less: {
         javascriptEnabled: true,
       },
-    base: '/kbone/docs/',
-    dest: path.resolve(__dirname, '../../docs'),
+    base: `${prefix}/kbone/docs`,
+    dest: isMirror ? path.resolve(__dirname, '../../docs_mirror') : path.resolve(__dirname, '../../docs'),
     head:[
         ['link', {rel: 'shortcut icon', href: '/favicon.ico'}],
     ],
@@ -23,7 +25,7 @@ module.exports = {
             {text: 'dom/bom 扩展 API', link: '/domextend/'},
             {text: 'Q&A', link: '/qa/'},
             {text: '更新日志', link: '/changelog/'},
-            {text: 'kbone-ui', link: '/kbone/docs/ui/intro/', target:'_blank'},
+            {text: 'kbone-ui', link: `${prefix}/kbone/docs/ui/intro/`, target:'_blank'},
             {text: 'GitHub', link: 'https://github.com/wechat-miniprogram/kbone', target:'_blank'},
             {text: '社区', link: 'https://developers.weixin.qq.com/community/minihome/mixflow/1213301129006825473', target:'_blank'},
         ],

@@ -2,7 +2,8 @@
   "name": "kbone-doc",
   "scripts": {
     "dev": "vuepress dev src",
-    "build": "vuepress build src"
+    "build": "vuepress build src",
+    "mirror": "TYPE=mirror vuepress build src"
   },
   "devDependencies": {
     "diacritics": "^1.3.0",
