@@ -12,7 +12,7 @@ module.exports = {
     less: {
         javascriptEnabled: true,
       },
-    base: `${prefix}/kbone/docs`,
+    base: `${prefix}/kbone/docs/`,
     dest: isMirror ? path.resolve(__dirname, '../../docs_mirror') : path.resolve(__dirname, '../../docs'),
     head:[
         ['link', {rel: 'shortcut icon', href: '/favicon.ico'}],
