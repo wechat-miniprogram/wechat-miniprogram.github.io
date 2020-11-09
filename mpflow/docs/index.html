@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mpflow 介绍 | wechat-miniprogram / mpflow</title>
+    <meta name="generator" content="VuePress 1.5.4">
+    
+    <meta name="description" content="原生小程序构建工具">
+    <link rel="preload" href="/mpflow/docs/assets/css/0.styles.6fdb82f2.css" as="style"><link rel="preload" href="/mpflow/docs/assets/js/app.4b05c337.js" as="script"><link rel="preload" href="/mpflow/docs/assets/js/2.abfaa26a.js" as="script"><link rel="preload" href="/mpflow/docs/assets/js/6.8bfa4f25.js" as="script"><link rel="prefetch" href="/mpflow/docs/assets/js/10.0f4b2cb6.js"><link rel="prefetch" href="/mpflow/docs/assets/js/11.a319dd13.js"><link rel="prefetch" href="/mpflow/docs/assets/js/12.6ad386b3.js"><link rel="prefetch" href="/mpflow/docs/assets/js/13.19f9076f.js"><link rel="prefetch" href="/mpflow/docs/assets/js/14.1feec196.js"><link rel="prefetch" href="/mpflow/docs/assets/js/15.d7916caf.js"><link rel="prefetch" href="/mpflow/docs/assets/js/3.3178ed5c.js"><link rel="prefetch" href="/mpflow/docs/assets/js/4.2483ba86.js"><link rel="prefetch" href="/mpflow/docs/assets/js/5.60bee80d.js"><link rel="prefetch" href="/mpflow/docs/assets/js/7.6d09fec5.js"><link rel="prefetch" href="/mpflow/docs/assets/js/8.fbd42371.js"><link rel="prefetch" href="/mpflow/docs/assets/js/9.07574fd4.js">
+    <link rel="stylesheet" href="/mpflow/docs/assets/css/0.styles.6fdb82f2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/mpflow/docs/" aria-current="page" class="home-link router-link-exact-active router-link-active"><!----> <span class="site-name">wechat-miniprogram / mpflow</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/mpflow/docs/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="插件" class="dropdown-title"><span class="title">插件</span> <span class="arrow down"></span></button> <button type="button" aria-label="插件" class="mobile-dropdown-title"><span class="title">插件</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/babel.html" class="nav-link">
+  Babel
+</a></li><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/typescript.html" class="nav-link">
+  Typescript
+</a></li><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/css.html" class="nav-link">
+  Css
+</a></li><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/unit-test.html" class="nav-link">
+  单元测试
+</a></li><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/e2e-test.html" class="nav-link">
+  E2E测试
+</a></li><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/slim.html" class="nav-link">
+  瘦身
+</a></li></ul></div></div><div class="nav-item"><a href="/mpflow/docs/qa/" class="nav-link">
+  Q&amp;A
+</a></div><div class="nav-item"><a href="/mpflow/docs/changelog/" class="nav-link">
+  更新日志
+</a></div><div class="nav-item"><a href="https://github.com/wechat-miniprogram/mpflow" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://developers.weixin.qq.com/community/minihome/mixflow/1213301129006825473" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  社区
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/mpflow/docs/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="插件" class="dropdown-title"><span class="title">插件</span> <span class="arrow down"></span></button> <button type="button" aria-label="插件" class="mobile-dropdown-title"><span class="title">插件</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/babel.html" class="nav-link">
+  Babel
+</a></li><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/typescript.html" class="nav-link">
+  Typescript
+</a></li><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/css.html" class="nav-link">
+  Css
+</a></li><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/unit-test.html" class="nav-link">
+  单元测试
+</a></li><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/e2e-test.html" class="nav-link">
+  E2E测试
+</a></li><li class="dropdown-item"><!----> <a href="/mpflow/docs/plugin/slim.html" class="nav-link">
+  瘦身
+</a></li></ul></div></div><div class="nav-item"><a href="/mpflow/docs/qa/" class="nav-link">
+  Q&amp;A
+</a></div><div class="nav-item"><a href="/mpflow/docs/changelog/" class="nav-link">
+  更新日志
+</a></div><div class="nav-item"><a href="https://github.com/wechat-miniprogram/mpflow" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://developers.weixin.qq.com/community/minihome/mixflow/1213301129006825473" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  社区
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/mpflow/docs/" aria-current="page" class="active sidebar-link">Mpflow 介绍</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/mpflow/docs/#起步" class="sidebar-link">起步</a></li><li class="sidebar-sub-header"><a href="/mpflow/docs/#为什么使用-mpflow" class="sidebar-link">为什么使用 mpflow?</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/mpflow/docs/#什么项目适合使用-mpflow" class="sidebar-link">什么项目适合使用 mpflow?</a></li></ul></li></ul></li><li><a href="/mpflow/docs/getting-start.html" class="sidebar-link">快速开始</a></li><li><a href="/mpflow/docs/configurations.html" class="sidebar-link">配置文件</a></li><li><a href="/mpflow/docs/commands.html" class="sidebar-link">CLI 命令</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="mpflow-介绍"><a href="#mpflow-介绍" class="header-anchor">#</a> Mpflow 介绍</h1> <p><strong>mpflow</strong> 是微信小程序的构建开发工具集</p> <ul><li>面向原生，原有的原生小程序可以无缝切换</li> <li>支持普通小程序，小程序插件，组件库等项目类型</li> <li>内置提供了基于 webpack 的小程序构建流程，让开发构建从刀耕火种走向现代</li> <li>通过插件提供开箱即用的 Babel, Typescript, Less, 单元测试, e2e 测试 等能力</li></ul> <h2 id="起步"><a href="#起步" class="header-anchor">#</a> 起步</h2> <p><a href="./getting-start">快速开始</a></p> <h2 id="为什么使用-mpflow"><a href="#为什么使用-mpflow" class="header-anchor">#</a> 为什么使用 mpflow?</h2> <div class="custom-block warning"><p class="custom-block-title">注意</p> <p>mpflow 不是一个跨端构建方案。</p></div> <p>相较于跨端方案，通常是将普通 Web 项目的写法(通常为普通 Web 写法的子集作为一个 DSL 写法)，编译构建为小程序的结构，简化的形式为：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code># 跨端构建方案
+DSL|WEB =&gt; 小程序
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>而 mpflow 做的是将原生的小程序写法编译构建为小程序写法，即：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code># mpflow 构建方案
+小程序 =&gt; 小程序
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>mpflow 的意义在于：<strong>为原生小程序写法提供构建以及配套的工具集，并在原生小程序写法的基础上提供拓展能力</strong></p> <p>mpflow 能提供纯原生写法无法做到的拓展能力如：</p> <ul><li>使用 <code>typescript</code> \ <code>less</code> \ <code>sass</code> 等语言代替 <code>js</code> \ <code>wxss</code> 等</li> <li>通过命令行工具和插件提供一个开箱即用的小程序标准能力</li> <li>自动的 tree shaking 去除没有用到的代码和 npm 模块，以及代码压缩</li> <li>等等...</li></ul> <h3 id="什么项目适合使用-mpflow"><a href="#什么项目适合使用-mpflow" class="header-anchor">#</a> 什么项目适合使用 mpflow?</h3> <ul><li>纯原生写法的小程序，希望使用到纯原生的功能特性</li> <li>小程序插件</li> <li>小程序组件库</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/mpflow/docs/getting-start.html">
+        快速开始
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/mpflow/docs/assets/js/app.4b05c337.js" defer></script><script src="/mpflow/docs/assets/js/2.abfaa26a.js" defer></script><script src="/mpflow/docs/assets/js/6.8bfa4f25.js" defer></script>
+  </body>
+</html>
