@@ -334,6 +334,26 @@ app.wxss 输出配置，支持的值：
 
 > PS：受限于小程序限制，worker 里不可使用 XMLHttpRequest 对象，不可使用 wx 相关接口，并且限制只能有一个小程序 worker 实例。更多限制可查看[小程序官方 worker 文档](https://developers.weixin.qq.com/miniprogram/dev/framework/workers.html)。
 
+### generate.weui
+
+是否要使用 weui 组件库，默认是 `false`。
+
+如果设置为 `true`，则开发者可直接通过类似下述代码来进行使用：
+
+```html
+<mp-navigation-bar :show="true">
+    <div slot="center">我是标题</div>
+</mp-navigation-bar>
+```
+
+这里有几个要点：
+
+1、默认 weui 是通过扩展库的方式引入，故不会占用包体积，可放心使用；
+2、所有 weui 组件必须带上 `mp-` 前缀，例如使用 cell 组件，则要写成 `<mp-cell></mp-cell>`
+3、对于支持指定 slot 的 weui 组件，必须将该 slot 属性设置在 div 节点上，并且将其置于 weui 组件下第一层，如上述例子中的 navigation-bar 组件。
+
+> PS：目前暂未支持各个 weui 组件属性的默认值，所以对于没有设置的属性会传入 null，小程序底层会将其转为属性值对应的类型而不会应用 weui 组件内部提供的初始值；所以如果对属性默认值有需求的，需要手动传一下具体的值。
+
 ## runtime
 
 运行时配置。

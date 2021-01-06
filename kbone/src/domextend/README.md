@@ -454,6 +454,10 @@ wx.request({
 
 > PS：只有 dom.nodeType 为 1 的元素节点可获取。
 
+### dom.$$wxCustomComponent
+
+假如该节点是自定义组件节点，那么通过此属性可获取该节点对应的自定义组件实例。
+
 ### dom.$$trigger
 
 同 [window.$$trigger](#window-trigger)。
