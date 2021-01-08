@@ -272,6 +272,7 @@ module.exports = {
                 'comp-b': {
                     path: 'comp-b/index',
                     props: ['propa', 'propb'],
+                    propsVal: ['', 'default value'],
                     events: ['someevent'],
                 },
             },
@@ -281,7 +282,9 @@ module.exports = {
 }
 ```
 
-usingComponents 里的声明和小程序页面的 usingComponents 字段类似。键为组件名，值可以为组件相对 root 字段的路径，也可以是一个配置对象。这个配置对象的 path 为组件相对路径，props 表示要这个组件会被用到的 properties，events 表示这个组件会被监听到的事件。
+usingComponents 里的声明和小程序页面的 usingComponents 字段类似。键为组件名，值可以为组件相对 root 字段的路径，也可以是一个配置对象。这个配置对象的 path 为组件相对路径，props 表示要这个组件会被用到的 properties，propsVal 表示对应属性的默认值，events 表示这个组件会被监听到的事件。
+
+> PS：如果不传属性默认值，那么属性默认会传 null 值。
 
 2. 将自定义组件放入组件根目录
 
