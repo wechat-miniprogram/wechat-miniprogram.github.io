@@ -484,6 +484,30 @@ document.querySelector('div').$$getBoundingClientRect().then(res => {
 })
 ```
 
+### dom.$$animate
+
+执行小程序组件的动画方法。
+
+> PS：此接口是小程序组件的 this.animate 的二次封装，具体可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/framework/view/animation.html)中的关键帧动画/滚动驱动动画，接口除了不需要传入 selector 外其他保持一致。
+
+```js
+document.querySelector('#animation').$$animate([
+    // 关键帧数据
+], 2000, () => {})
+```
+
+### dom.$$clearAnimation
+
+执行小程序组件的清除动画方法。
+
+> PS：此接口是小程序组件的 this.clearAnimation 的二次封装，具体可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/framework/view/animation.html)中的关键帧动画/滚动驱动动画，接口除了不需要传入 selector 外其他保持一致。
+
+```js
+document.querySelector('#animation').$$clearAnimation({
+    // 属性
+}, () => {})
+```
+
 ### dom.$$getContext
 
 获取小程序组件的 context 对象，返回一个 promise。
