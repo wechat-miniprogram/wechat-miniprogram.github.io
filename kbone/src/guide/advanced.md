@@ -574,12 +574,14 @@ kbone 里节点事件没有直接复用小程序的捕获冒泡事件体系，�
 <!-- 使用小程序原生方式监听 catch 事件 -->
 <wx-catch @click="onCaptureClick"></wx-catch>
 <!-- 监听动画事件 -->
-<wx-animation @animationstart="onAnimationStart" @transitionend="onTransitionEnd"></wx-animation>
+<wx-animation :animation="animation" @animationstart="onAnimationStart" @transitionend="onTransitionEnd"></wx-animation>
 ```
 
 其中 `wx-capture` 和 `wx-catch` 节点上面绑定的 **touchstart**、**touchmove**、**touchend**、**touchcancel** 和 **tap** 五个事件会被使用 capture-bind:xxx 和 catchxxx 的方式监听，脱离了 kbone 的事件捕获冒泡体系，所以只会在此节点单独触发。
 
 > PS：这三种特殊节点的内部实现和内置组件一致，故书写方式和样式处理均可参考内置组件的使用方案。
+
+> PS：`wx-animation` 支持 **animation** 属性。
 
 ## 跨页面通信和跨页面数据共享
 
@@ -673,6 +675,7 @@ Component({
 ```
 
 > PS：更多详细配置可以[点此查看](../config/)
+
 > PS：具体例子可参考 [demo3](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo3)
 
 ## 使用 Worker 和 SharedWorker
