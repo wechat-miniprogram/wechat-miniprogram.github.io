@@ -388,6 +388,13 @@ cookie 存储方式，支持的值：
 * `globalstorage`：同 `default`
 * `globalmemory`：存储在内存中，所有页面共享
 
+### runtime.disableMpEvent
+
+是否禁止抛出小程序的 tap、longpress 事件，方便开发者自己构建相关事件：
+
+* `false`：**默认值**，不禁止抛出
+* `true`：禁止抛出
+
 ## app
 
 app 窗口配置，可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#window)。
