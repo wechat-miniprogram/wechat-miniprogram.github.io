@@ -160,3 +160,15 @@ weui 组件对齐 npm 上 1.0.7 版本。
 | window.$$forceRender | <div style="color: #3a8e3a">完全支持</div> | 在 Web 端是一个空函数 |
 | dom.$$getBoundingClientRect | <div style="color: #3a8e3a">完全支持</div> | |
 | canvas.$$prepare | <div style="color: #3a8e3a">完全支持</div> | |
+
+## 在线 demo
+
+<div style="display: flex; width: 100%; padding: 40px 0; align-items: center; flex-direction: column;">
+    <img src="../images/wx-components.png" width="300" height="300" alt="内置组件" />
+    <span style="margin-top: 10px; font-size: 20px;">内置组件 demo</span>
+</div>
+
+<div style="display: flex; width: 100%; padding: 40px 0; align-items: center; flex-direction: column;">
+    <img src="../images/weui.png" width="300" height="300" alt="weui 组件" />
+    <span style="margin-top: 10px; font-size: 20px;">weui 组件 demo</span>
+</div>
