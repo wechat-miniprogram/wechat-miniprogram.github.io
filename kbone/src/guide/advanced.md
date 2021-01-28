@@ -826,3 +826,28 @@ module.exports = {
 后续按照正常方式进行构建即可。构建完成后的操作和原生的云开发模式一样，具体可参考[官方提供的云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)。
 
 > PS：具体例子可参考 [demo19](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo19)
+
+## ui 库
+
+在小程序里默认支持了[内置组件](#使用小程序内置组件)，如果需要使用 [weui 组件库](https://developers.weixin.qq.com/miniprogram/dev/extended/weui/)的话，可以将 generate.worker 设为 `true`：
+
+```js
+module.exports = {
+    generate: {
+        weui: true,
+    },
+}
+```
+
+此配置会以**扩展库**（不会占用小程序代码体积）的方式引入 weui 组件库，然后以[第三方小程序自定义组件](#使用小程序自定义组件)的方式提供开发者使用。因为每个 weui 组件在使用时都会被外包一层自定义组件，建议按需使用，在不必要用到 weui 组件时使用 div/span/img 等 Web 标签代替。
+
+weui 组件使用方式和内置组件类似：
+
+```html
+<mp-navigation-bar :show="true">
+    <!-- 如果存在 slot 节点，需要将 slot 设置在 div 上，同时该 div 必须位于 weui 组件下的第一层节点 -->
+    <div slot="center">我是标题</div>
+</mp-navigation-bar>
+```
+
+同时，为了方便开发者同构到 Web 端，提供了基于 Web Components 技术实现的 kbone-ui 库，里面包含了内置组件和 weui 组件库的实现，具体用法参考[此文档](../kbone-ui/)。

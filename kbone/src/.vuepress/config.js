@@ -1,10 +1,13 @@
 const path = require('path')
+const CopyPlugin = require('copy-webpack-plugin')
 const removeDiacritics = require('diacritics').remove
 
 const rControl = /[\u0000-\u001f]/g
 const rSpecial = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'“”‘’–—<>,.?/]+/g
 const isMirror = process.env.TYPE === 'mirror'
 const prefix = isMirror ? '/miniprogram' : ''
+
+const dest = isMirror ? path.resolve(__dirname, '../../docs_mirror') : path.resolve(__dirname, '../../docs')
 
 module.exports = {
     title: 'wechat-miniprogram / kbone',
@@ -13,7 +16,7 @@ module.exports = {
         javascriptEnabled: true,
       },
     base: `${prefix}/kbone/docs/`,
-    dest: isMirror ? path.resolve(__dirname, '../../docs_mirror') : path.resolve(__dirname, '../../docs'),
+    dest,
     head:[
         ['link', {rel: 'shortcut icon', href: '/favicon.ico'}],
     ],
@@ -25,7 +28,10 @@ module.exports = {
             {text: 'dom/bom 扩展 API', link: '/domextend/'},
             {text: 'Q&A', link: '/qa/'},
             {text: '更新日志', link: '/changelog/'},
-            {text: 'kbone-ui', link: `${prefix}/kbone/docs/ui/intro/`, target:'_blank'},
+            {text: 'kbone-ui', items: [
+                {text: '1.x 版本', link: `/kbone-ui/`},
+                {text: '0.x 版本', link: `/ui/intro/`},
+            ]},
             {text: 'GitHub', link: 'https://github.com/wechat-miniprogram/kbone', target:'_blank'},
             {text: '社区', link: 'https://developers.weixin.qq.com/community/minihome/mixflow/1213301129006825473', target:'_blank'},
         ],
@@ -37,6 +43,7 @@ module.exports = {
             '/domextend/': [''],
             '/qa/': [''],
             '/changelog/': [''],
+            '/kbone-ui/': [''],
             '/ui/':[
                 '/ui/intro/quickstart',
                 '/ui/intro/',
@@ -85,7 +92,6 @@ module.exports = {
                 '/guide/advanced',
                 '/guide/principle',
                 '/guide/optimize',
-                '/guide/suggest',
                 '/guide/develop',
             ],
             
@@ -114,5 +120,9 @@ module.exports = {
                 // lowercase
                 .toLowerCase()
         },
+    },
+    chainWebpack(config) {
+        config.plugin('copy-examples')
+            .use(CopyPlugin, [[{from: path.join(__dirname, '../../examples'), to: path.join(dest, 'examples')}]])
     },
 }
