@@ -69,7 +69,7 @@ KBoneUI.register()
 |:-:|:-:|---|
 | wx-cover-image | <div style="color: #888">不支持</div> | 请使用 img 标签代替 |
 | wx-cover-view | <div style="color: #888">不支持</div> | 请使用 div 标签代替 |
-| wx-match-media | <div style="color: #888">不支持</div> | |
+| wx-match-media | <div style="color: #3a8e3a">完全支持</div> | |
 | wx-movable-area | <div style="color: #3a8e3a">完全支持</div> | |
 | wx-movable-view | <div style="color: #3a8e3a">完全支持</div> | |
 | wx-scroll-view | <div style="color: #4646cc">部分支持</div> | 以下属性不支持：<ul><li>enable-back-to-top</li><li>scroll-anchoring</li><li>enhanced</li><li>bounces</li><li>show-scrollbar</li><li>paging-enabled</li><li>fast-deceleration</li></ul><br/>以下事件不支持：<ul><li>dragstart</li><li>dragging</li><li>dragend</li></ul> |
