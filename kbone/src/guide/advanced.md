@@ -564,7 +564,7 @@ kbone 里节点事件没有直接复用小程序的捕获冒泡事件体系，�
 
 故在 kbone 里的节点事件是在源节点里监听到后，就直接在 kbone 仿造出的 dom 树中进行捕获冒泡。此处使用的事件绑定方式均采用 bindxxx 的方式，故在小程序中最初监听到的事件一定是在源节点监听到的。比如用户触摸屏幕后，会触发 touchstart 事件，在节点 a 上监听到 touchstart 事件后，后续监听到同一行为触发的 touchstart 均会被抛弃，后续的捕获冒泡阶段会在仿造 dom 树中进行。
 
-目前除了内置组件特有的事件外（比如图片的 load 事件），普通节点只有 **touchstart**、**touchmove**、**touchend**、**touchcancel** 和 **tap** 会被监听，其中 tap 会被转化为 **cick** 事件来触发。
+目前除了内置组件特有的事件外（比如图片的 load 事件），普通节点只有 **touchstart**、**touchmove**、**touchend**、**touchcancel** 和 **tap** 会被监听，其中 tap 会被转化为 **click** 事件来触发。
 
 因为此处事件监听方式默认是 bindxxx，但是对于一些特殊场景可能需要使用小程序的 capture-bind:xxx（比如无法在源节点监听到事件的场景）、catchxxx（比如需要阻止触摸引起滚动的场景） 和动画事件的情况，对于此可以使用特殊节点 `wx-capture`、`wx-catch` 和 `wx-animation`：
 
