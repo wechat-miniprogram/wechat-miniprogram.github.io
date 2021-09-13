@@ -1,0 +1,12 @@
+{
+  "name": "mpflow-doc",
+  "version": "0.0.1",
+  "devDependencies": {
+    "diacritics": "^1.3.0",
+    "vuepress": "^1.5.4"
+  },
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  }
+}
