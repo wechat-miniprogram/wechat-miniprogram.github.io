@@ -177,6 +177,11 @@ export default function createApp() {
         el: '#app',
         render: h => h(App)
     })
+
+    // 此方法也支持返回一个 promise
+    // return new Promise((resolve, reject) => {
+    //     resolve(new Vue({/* your options */}))
+    // })
 }
 ```
 
