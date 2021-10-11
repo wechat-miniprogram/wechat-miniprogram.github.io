@@ -139,6 +139,11 @@
 **Q**：使用 Web 框架时，发现存在某些节点的事件监听器无法设置该怎么版？（比如在 react 中想要监听 picker-view 的 change 方法）<br/>
 **A**：请参考文档[批量设置事件监听器](../guide/advanced.md#批量设置事件监听器)。
 
+<br/>
+
+**Q**：为什么 selectorQuery/intersectionObserver 无法选择到节点？<br/>
+**A**：kbone 提供的 [$$createSelectorQuery](../domextend/#window-createselectorquery)/[$$createIntersectionObserver](../domextend/#window-createselectorquery) 默认以页面的根组件作为选取范围，如果节点在下层自定义组件的话可使用跨自定义组件选择器（一般在选择器中加上前缀 `.h5-body >>> ` 即可，`.h5-body` 即是根组件中的 body 节点）。当然开发者也可以直接调用 `wx.createSelectorQuery/wx.createIntersectionObserver`，然后在需要传入自定义组件实例的地方传入选取节点所属的自定义组件实例（一般通过该节点的 [$$wxComponent](../domextend/#dom-wxcomponent) 属性可获取）。
+
 ## 反馈
 
 如果还遇到其他问题，可在 [issue](https://github.com/wechat-miniprogram/kbone/issues) 中反馈。

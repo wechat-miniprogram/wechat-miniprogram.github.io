@@ -851,3 +851,80 @@ weui 组件使用方式和内置组件类似：
 ```
 
 同时，为了方便开发者同构到 Web 端，提供了基于 Web Components 技术实现的 kbone-ui 库，里面包含了内置组件和 weui 组件库的实现，具体用法参考[此文档](../kbone-ui/)。
+
+## 静态 h5 页面/ jQuery 支持
+
+### html 处理
+
+对于一些已有的 h5 页面，往往是以 index.html + index.css + index.js 这样的传统组合出现。如果需要改造成 kbone 页面，则采取 webpack 构建，创建一个入口 js 引入 index.css 和 index.js 即可，而 index.html 则需要转成 js 代码才可被 kbone 使用。
+
+为此，可使用 **html-to-js-loader** 将 index.html 转化为 js 代码。假设 index.html 代码如下：
+
+```html
+<!-- index.html -->
+<div id="app">
+    <div class="cnt"></div>
+    <button onclick="console.log('123')"></button>
+    <ul>
+        <!-- 这是一段注释 -->
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+    </ul>
+</div>
+```
+
+那么使用时在入口 js 中补充如下代码即可：
+
+```js
+const getDom = require('html-to-js-loader!./index.html')
+
+document.body.appendChild(getDom())
+```
+
+这样 index.html 里的 html 结构会被转成调用 dom 接口的 js 代码，被添加到 document.body 下面。
+
+### js 处理
+
+对于已有的 js 代码，可能用到了一些 kbone 未支持的接口，此时使用 kbone 提供的[扩展能力](#扩展-dom-bom-对象和-api)进行前置补充即可。但是对于 js 中直接使用全局变量的情况，则需要另作处理，假设 index.js 代码如下：
+
+```js
+// index.js
+abc = function () {
+    console.log('abc')
+}
+
+abc()
+```
+
+这里 `abc` 在其他运行环境中会被挂在 `window/global` 上，但是小程序环境中则会报错，因此在入口 js 中引入 index.js 时，可使用 **html-to-js-loader**：
+
+```js
+require('replace-global-var-loader!./index.js')
+```
+
+那么 index.js 的代码在被引入后会在非标准全局变量外面追加 `window['']` 这样的内容，确保是从 widnow 下读取该变量：
+
+```js
+// index.js
+window['abc'] = function () {
+    console.log('abc')
+}
+
+window['abc']()
+```
+
+### jQuery 支持
+
+jQuery 目前并不完全支持，主要原因在于某些接口在小程序环境下 kbone 无法提供支持（比如同步的 getComputedStyle 等），但是在大部分 h5 场景下，jQuery 仍然能够使用，不过仍然需要做一些前置兼容以免 jQuery 初始化报错：
+
+```js
+const kbone = require('kbone-tool')
+kbone.jquery.compat() // 要先于 jQuery 引入调用
+
+const $ = require('./jquery-3.6.0')
+```
+
+**kbone-tool** 中提供了一下前置兼容逻辑，在引入 jQuery 之前调用一次即可。
+
+> PS：具体例子可参考 [demo31](https://github.com/wechat-miniprogram/kbone/tree/develop/examples/demo31)
