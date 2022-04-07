@@ -395,6 +395,20 @@ cookie 存储方式，支持的值：
 * `false`：**默认值**，不禁止抛出
 * `true`：禁止抛出
 
+### runtime.extraStyleList
+
+补充 style 对象支持的样式，默认支持的样式列表可[点此查看](https://github.com/Tencent/kbone/blob/develop/packages/miniprogram-render/src/node/style-list.js)。
+
+```js
+// mp-webpack-plugin 配置
+{
+    runtime: {
+        extraStyleList: ['webkitMask'], // 追加 -webkit-mask 支持
+    },
+    // 其他配置...
+}
+```
+
 ## app
 
 app 窗口配置，可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#window)。
