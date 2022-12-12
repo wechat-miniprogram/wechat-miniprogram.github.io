@@ -6,7 +6,7 @@
 
 ## 引入组件
 
-1. 通过 [useExtendedLib 扩展库](../../reference/configuration/app.md#useExtendedLib) 的方式引入，这种方式引入的组件将不会计入代码包大小。
+1. 通过 [useExtendedLib 扩展库](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib) 的方式引入，这种方式引入的组件将不会计入代码包大小。
 2. 可以通过[npm](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)方式下载构建，npm包名为`weui-miniprogram`
 
 
@@ -14,7 +14,7 @@
 
 首先要在 app.wxss 里面引入 weui.wxss，如果是通过 npm 引入，需要先构建 npm（“工具”菜单 --> “构建 npm”）
 
-**通过 [useExtendedLib 扩展库](../../reference/configuration/app.md#useExtendedLib) 的方式引入，可省略 import 步骤**
+**通过 [useExtendedLib 扩展库](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib) 的方式引入，可省略 import 步骤**
 
 ```css
 @import 'weui-miniprogram/weui-wxss/dist/style/weui.wxss';
@@ -33,20 +33,9 @@
 2. 然后可以在对应页面的 wxml 中直接使用该组件
 
 ```html
-<mp-dialog title="test" show="{{true}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+<mp-dialog title="test" show="{{true}}" bindbuttontap="tapDialogButton" buttons="{{[{text: '取消'}, {text: '确认'}]}}">
     <view>test content</view>
 </mp-dialog>
-```
-
-```js
-Page({
-    data: {
-        buttons: [
-        	{ text: '取消' },
-        	{ text: '确认' }
-        ]
-    }
-})
 ```
 
 完整的组件的使用文档请参考具体的组件的文档。
