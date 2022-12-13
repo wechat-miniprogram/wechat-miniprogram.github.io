@@ -602,6 +602,22 @@ document.documentElement.style.backgroundColor = '#fffbe7'
 
 同 [global.extra](#global-extra)。
 
+### pages[[页面名称](#页面名称)].defaultTargetUrl
+
+小程序开发中可能存在一些场景无法给页面路由指定 targeturl 参数，进而导致页面初始 url 为空，而在一些 Web 开发场景中（如单页应用）需要初始 url 来展示对应页面，故提供 defaultTargetUrl 作为此场景的兼容配置。
+
+```js
+// mp-webpack-plugin 配置
+{
+    pages: {
+		index: {
+			defaultTargetUrl: '/test#/ccc', // 当页面路由参数中不存在 targeturl 参数时，会取此字段作为 targeturl 参数使用
+		},
+	},
+    // 其他配置...
+}
+```
+
 ## optimization
 
 优化配置，控制优化级别，通常使用默认配置即可。
