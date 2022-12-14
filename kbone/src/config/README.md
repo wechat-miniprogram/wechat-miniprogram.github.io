@@ -611,12 +611,14 @@ document.documentElement.style.backgroundColor = '#fffbe7'
 {
     pages: {
 		index: {
-			defaultTargetUrl: '/test#/ccc', // 当页面路由参数中不存在 targeturl 参数时，会取此字段作为 targeturl 参数使用
+			defaultTargetUrl: '/xxxx', // 当页面路由参数中不存在 targeturl 参数时，会取此字段作为 targeturl 参数使用
 		},
 	},
     // 其他配置...
 }
 ```
+
+> PS：targeturl 参数和 defaultTargetUrl 配置是等效的。区别在 targeturl 参数是在路由中，所以需要 encode，而 defaultTargetUrl 配置则不需要；同时走到 defaultTargetUrl 配置时会走默认打开类型，即不需要考虑原路由中的 type 参数
 
 ## optimization
 
