@@ -109,6 +109,7 @@ module.exports = {
 * view 组件
 * icon 组件
 * progress 组件
+* rich-text 组件
 * text 组件
 * button 组件
 * editor 组件
