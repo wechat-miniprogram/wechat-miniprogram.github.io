@@ -87,6 +87,16 @@ window.$$getComputedStyle(document.querySelector('div'), ['backgroundColor']).th
 
 相当于 wx.createIntersectionObserver，用法可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/api/wxml/wx.createIntersectionObserver.html)。
 
+```js
+// 此处不需要传入自定义组件实例，会默认取页面的根节点所在的自定义组件实例传入
+window.$$createIntersectionObserver({ observeAll: true })
+    .relativeToViewport()
+    .observe('.h5-body >>> .item', res => {
+        // 因为是从页面的根节点所在的自定义组件实例往下找，所以需要加 .h5-body >>> 前缀
+        console.log(res)
+    })
+```
+
 ### window.$$getOpenerEventChannel
 
 相当于页面的 this.getOpenerEventChannel，用法可参考[官方文档](https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#%E9%A1%B5%E9%9D%A2%E9%97%B4%E9%80%9A%E4%BF%A1)。
