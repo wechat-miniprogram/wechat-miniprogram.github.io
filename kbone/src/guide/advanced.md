@@ -88,48 +88,13 @@ module.exports = {
 * `<video></video>`  --> video 组件
 * `<canvas></canvas>` --> canvas 组件
 
-还有一部分内置组件在 html 中没有标签可替换，那就需要使用 `wx-` 前缀，基本用法如下：
+其他内置组件在 html 中没有标签可替换，那就需要使用 `wx-` 前缀，基本用法如下：
 
 ```html
 <!-- wx- 前缀用法 -->
 <wx-picker mode="region" @change="onChange">选择城市</wx-picker>
 <wx-button open-type="share" @click="onClickShare">分享</wx-button>
 ```
-
-`wx-` 前缀已支持内置组件列表：
-
-* cover-image 组件
-* cover-view 组件
-* match-media 组件
-* movable-area 组件
-* movable-view 组件
-* scroll-view 组件
-* swiper 组件
-* swiper-item 组件
-* view 组件
-* icon 组件
-* progress 组件
-* rich-text 组件
-* text 组件
-* button 组件
-* editor 组件
-* form 组件
-* picker 组件
-* picker-view 组件
-* picker-view-column 组件
-* slider 组件
-* switch 组件
-* navigator 组件
-* camera 组件
-* image 组件
-* live-player 组件
-* live-pusher 组件
-* voip-room 组件
-* map 组件
-* ad 组件
-* official-account 组件
-* open-data 组件
-* web-view 组件
 
 使用 `wx-` 前缀创建的内置组件，其对应的 dom 节点标签名统一是 `WX-COMPONENT`，dom 节点的 behavior 属性表示要渲染的组件名。
 
