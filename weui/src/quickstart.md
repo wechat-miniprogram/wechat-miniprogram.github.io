@@ -7,44 +7,72 @@
 ## 引入组件
 
 1. 通过 [useExtendedLib 扩展库](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib) 的方式引入，这种方式引入的组件将不会计入代码包大小。
-2. 可以通过[npm](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)方式下载构建，npm包名为`weui-miniprogram`
 
+
+    ```json
+    // app.json
+    {
+      "useExtendedLib": {
+        "weui": true // weui 会自动更新到最新版本
+      }
+    }
+    ```
+
+    ```json
+    // app.json
+    {
+      "useExtendedLib": {
+        "weui": "1.3.61" // 固定 weui 版本
+      }
+    }
+    ```
+
+
+2. 可以通过[npm](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)方式下载构建，npm包为[weui-miniprogram](https://www.npmjs.com/package/weui-miniprogram)
+
+    ```bash
+    npm i weui-miniprogram -D
+    ```
+
+    通过 npm 引入后需要先构建 npm（“工具”菜单 --> “构建 npm”）
 
 ## 如何使用
 
-首先要在 app.wxss 里面引入 weui.wxss，如果是通过 npm 引入，需要先构建 npm（“工具”菜单 --> “构建 npm”）
+1. 首先要在 app.wxss 里面引入 weui.wxss
 
-**通过 [useExtendedLib 扩展库](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib) 的方式引入，可省略 import 步骤**
+    **通过 [useExtendedLib 扩展库](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useExtendedLib) 的方式引入，可省略 import 步骤**
 
-```css
-@import 'weui-miniprogram/weui-wxss/dist/style/weui.wxss';
-```
+    ```css
+    @import '/miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+    ```
 
-然后可以在页面中引入 dialog 弹窗组件
-1. 首先在页面的 json 文件加入 usingComponents 配置字段
-```
-{
-  "usingComponents": {
-    "mp-dialog": "weui-miniprogram/dialog/dialog"
-  }
-}
-```
+1. 在页面 json 中引入 dialog 弹窗组件
+    ```json
+    // 页面 json
+    {
+      "usingComponents": {
+        "mp-dialog": "weui-miniprogram/dialog/dialog"
+      }
+    }
+    ```
 
-2. 然后可以在对应页面的 wxml 中直接使用该组件
+1. 在对应页面的 wxml 中直接使用该组件
 
-```html
-<mp-dialog title="test" show="{{true}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
-    <view>test content</view>
-</mp-dialog>
-```
+    ```html
+    <!-- 页面 wxml -->
+    <mp-dialog title="test" show="{{true}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+        <view>test content</view>
+    </mp-dialog>
+    ```
 
-```js
-Page({
-  data: {
-    buttons: [{text: '取消'}, {text: '确认'}]
-  }
-})
-```
+    ```js
+    // 页面 js
+    Page({
+      data: {
+        buttons: [{text: '取消'}, {text: '确认'}]
+      }
+    })
+    ```
 
 完整的组件的使用文档请参考具体的组件的文档。
 
